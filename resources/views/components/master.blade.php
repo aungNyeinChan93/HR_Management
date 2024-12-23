@@ -15,7 +15,7 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.min.css" rel="stylesheet" />
 
-    <title>Document</title>
+    <title>{{$title}}</title>
 
 </head>
 
@@ -60,5 +60,8 @@
 
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.umd.min.js"></script>
+
+{{-- js section --}}
+{{ $scripts??null }}
 
 </html>
