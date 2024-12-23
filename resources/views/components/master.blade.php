@@ -21,12 +21,12 @@
 
 <body class="">
     <div class="wrapper">
-        <nav class="bg-gray-800 p-4 flex justify-between items-center">
-            <div class="text-2xl text-red-500 ">HR Management</div>
+        <nav class="bg-gray-800 px-6 py-2 flex justify-between items-center">
+            <div class="text-xl text-red-500 flex justify-between items-center ">HR Management <img src="{{asset('images/logo.png')}}" class=" ms-2 w-[30px]" alt=""></div>
             @auth
-                <ul class="flex space-x-7">
+                <ul class="flex space-x-7 mt-3 items-center ">
                     <li><a href="/" class="text-white hover:text-gray-400">Home</a></li>
-                    <li><a href="/about" class="text-white hover:text-gray-400">About</a></li>
+                    <li><a href="{{route('users.index')}}" class="text-white hover:text-gray-400">User</a></li>
                     <li><a href="/services" class="text-white hover:text-gray-400">Services</a></li>
                     <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li>
                 </ul>

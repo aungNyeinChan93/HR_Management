@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -14,3 +15,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+
+
+Route::get("users",[UserController::class,'index'])->name('users.index');
+Route::delete("users/delete/{user}",[UserController::class,'destory'])->name('users.destory');

@@ -8,46 +8,21 @@
         <div class="flex justify-center">
             <div class="w-full">
                 <x-header>
-                    Home Page
+                    Home Page <span class="font-mono text-red-400 text-lg">({{ Auth::user()->name }})</span>
                 </x-header>
 
-                <div class="row mt-3 p-3">
-                    <div class="col-6">
-                        <div class="card border border-danger">
-                            <div class="card-header">
-                                header
-                            </div>
-                            <div class="card-body">
-                                this is body
-                            </div>
-                            <div class="card-footer">
-                                footer
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="card ">
-                            <div class="card-header">
-                                header
-                            </div>
-                            <div class="card-body">
-                                this is body
-                            </div>
-                            <div class="card-footer">
-                                footer
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
             </div>
         </div>
     </div>
 
     <x-slot:scripts>
         <script>
-            console.log('hello');
-            alert('welcome to home page');
-            confirm('are you sure?');
+            let btn = document.getElementById('btn-test');
+            btn.addEventListener('click', function() {
+                alert('button clicked');
+                btn.style.backgroundColor = 'red';
+            });
         </script>
     </x-slot:scripts>
 
