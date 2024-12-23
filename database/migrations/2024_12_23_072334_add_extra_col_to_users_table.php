@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->date('birthday')->nullable();
             $table->enum("gender", ['male', 'famale'])->nullable();
             $table->string('profile_image')->nullable();
-            $table->foreignIdFor(Department::class, 'department_id')->nullable();
+            $table->foreignIdFor(Department::class, 'department_id')->default('1');
             $table->date('date_of_join')->nullable();
             $table->boolean('is_active')->default(1);
         });

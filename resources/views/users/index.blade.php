@@ -30,9 +30,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->phone }}</td>
-                            <td>{{ $user->nrc_number }}</td>
-                            <td>{{ $user->address }}</td>
+                            <td>{{ $user->department->title }}</td>
                             <td>
                                 @can('delete', $user)
                                     <form action="{{ route('users.destory', $user->id) }}" method="POST">
@@ -45,6 +43,9 @@
                         </tr>
                     @endforeach
                 </x-table>
+            </div>
+            <div class="col-12 mt-3">
+                {{$users->links()}}
             </div>
         </div>
     </div>

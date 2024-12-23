@@ -20,5 +20,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        // $this->app->singleton('test',function(){
+        //     dump('test');
+        // });
     }
 }

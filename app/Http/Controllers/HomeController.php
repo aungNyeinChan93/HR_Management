@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //index
-    public function index(){
+    //home
+    public function home(){
         $users = User::query()->latest()->get();
         UserLoginJob::dispatch(auth()->user());
-        return view('user.home',compact('users'));
+        return view('users.home',compact('users'));
     }
 }

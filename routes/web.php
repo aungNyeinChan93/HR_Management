@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -14,8 +15,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/',[HomeController::class,'index'])->name('home');
+// home
+Route::get('/',[HomeController::class,'home'])->name('home');
 
-
+// users
 Route::get("users",[UserController::class,'index'])->name('users.index');
 Route::delete("users/delete/{user}",[UserController::class,'destory'])->name('users.destory');
+
+// employees
+Route::resource('employees',EmployeeController::class);
+Route::get('employees/dataTables/ssd',[EmployeeController::class,'ssd']);
