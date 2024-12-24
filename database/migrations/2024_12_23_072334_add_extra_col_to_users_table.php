@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('nrc_number')->unique()->nullable();
             $table->text('address')->nullable();
             $table->date('birthday')->nullable();
-            $table->enum("gender", ['male', 'famale'])->nullable();
+            $table->enum("gender", ['male', 'female'])->nullable();
             $table->string('profile_image')->nullable();
             $table->foreignIdFor(Department::class, 'department_id')->default('1');
             $table->date('date_of_join')->nullable();

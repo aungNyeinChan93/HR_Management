@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('sweetalert::alert')
+
+    <link rel="stylesheet" href="">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -26,7 +29,7 @@
     {{-- date range picker  --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-    
+
     <title>{{ $title ?? null }}</title>
 
 </head>
@@ -117,6 +120,9 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
+
+{{-- sweet alert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
     document.getElementById('toggleSidebar').addEventListener('click', function() {

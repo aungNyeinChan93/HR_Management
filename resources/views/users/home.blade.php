@@ -10,17 +10,25 @@
                 <x-header>
                     Home Page <span class="font-mono text-red-400 text-lg">({{ Auth::user()->name ?? null }})</span>
                 </x-header>
+
+                <div>
+                    Total users = ({{count($users)}})
+
+
+                </div>
             </div>
         </div>
     </div>
 
     <x-slot:scripts>
         <script>
-            // let btn = document.getElementById('btn-test');
-            // btn.addEventListener('click', function() {
-            //     alert('button clicked');
-            //     btn.style.backgroundColor = 'red';
-            // });
+            swal({
+                    title: "Login Success",
+                    text: " Have a good day!  ",
+                    icon: "success",
+                });
+
+                
         </script>
     </x-slot:scripts>
 

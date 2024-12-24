@@ -32,13 +32,16 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ strtoupper($user->department->title) }}</td>
                             <td>
-                                @can('delete', $user)
+                                <div class="d-flex justify-content-around">
+                                    <a href="{{route('users.show',$user->id)}}" class="btn btn-sm btn-info">detail</a>
+                                    @can('delete', $user)
                                     <form action="{{ route('users.destory', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                     </form>
                                 @endcan
+                                </div>
                             </td>
                         </tr>
                     @endforeach

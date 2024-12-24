@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -14,6 +15,14 @@ class UserController extends Controller
     {
         $users = User::latest()->paginate(10);
         return view('users.index',compact('users'));
+    }
+
+    //show
+    public function show(User $user){
+    
+        Alert::success('Test', 'Success Message');
+
+        return view('users.show',compact("user"));
     }
 
     // destory

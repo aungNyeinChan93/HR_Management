@@ -43,6 +43,8 @@
                                 <th>Department</th>
                                 <th>Is Active</th>
                                 <th>Create Date</th>
+                                <th>Update Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>
@@ -86,11 +88,27 @@
                         name: 'is_active'
                     },
                     {
-                        data: 'created_at',
-                        name: 'created_at'
+                        data: 'created date',
+                        name: 'created date'
                     },
-                ]
+                    {
+                        data:'updated date',
+                        name:'updated date'
+                    },
+                    {
+                        data:'action',
+                        name:'action'
+                    }
+                ],
             });
+
+            @if (session('success'))
+                swal({
+                    title: "Create Employee",
+                    text: "You have been created successfully ",
+                    icon: "success",
+                });
+            @endif
         </script>
     </x-slot:scripts>
 </x-master>

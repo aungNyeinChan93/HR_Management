@@ -15,7 +15,7 @@ class UserLoginJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public User $user)
+    public function __construct()
     {
         //
     }
@@ -26,9 +26,11 @@ class UserLoginJob implements ShouldQueue
     public function handle(): void
     {
         //
-        logger("User {$this->user->name} logged in");
+        // logger("User {$this->user->name} logged in");
 
-        Mail::to($this->user->email)->send(new UserLoginMail($this->user));
+        logger('login !');
+
+        // Mail::to($this->user->email)->send(new UserLoginMail($this->user));
 
     }
 }

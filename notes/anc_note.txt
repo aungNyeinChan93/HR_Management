@@ -7,3 +7,7 @@
 
 # jsvalidatin laravel => https://github.com/proengsoft/laravel-jsvalidation/wiki/Laravel-7.x-installation
 
+# sweetAlert => https://sweetalert.js.org/
+# sweetAlert 2 => https://realrashid.github.io
+
+

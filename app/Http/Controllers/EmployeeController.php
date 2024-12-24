@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreEmployeeRequest;
 
 class EmployeeController extends Controller
@@ -16,7 +17,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+
         $employees = User::query()->latest()->get();
+
         return view('employees.index', compact('employees'));
     }
 
@@ -44,6 +47,8 @@ class EmployeeController extends Controller
         $data['password'] = Hash::make($request->password);
 
         $user = User::create(attributes: $data);
+
+        Alert::success('Success Employee Create', 'Success Message');
 
         return to_route('employees.index')->with('success','employee create success!');
 
@@ -84,6 +89,7 @@ class EmployeeController extends Controller
     public function ssd()
     {
         $employees = User::query()->with('department')->latest();
+
         return DataTables::of($employees)
             ->addColumn('department name', function ($each) {
                 return $each->department ? strtoupper($each->department->title) : "null";
@@ -91,7 +97,18 @@ class EmployeeController extends Controller
             ->editColumn("is_active", function ($each) {
                 return $each->is_active == 1 ? '<span class="badge badge-success p-1 rounded">Present</span>' : '<span class="badge badge-success p-1 rounded">Leave</span>';
             })
-            ->rawColumns(['is_active']) //for html tags
+            ->editColumn('created date',function($each){
+                return $each->created_at ? $each->created_at->format('j-F-Y') : "";
+            })
+            ->editColumn('updated date',function($each){
+                return $each->updated_at ? $each->updated_at->format('j-F-Y') : "";
+            })
+            ->addColumn('action',function($each){
+                $edit ="<a href=".route('employees.edit',$each->id)." class='btn btn-sm btn-warning mx-1'>Edit</a>";
+                $info ="<a href=".route('employees.show',$each->id)." class='btn btn-sm btn-info mx-1'>Detail</a>";
+                return '<div class="d-flex ">'.$edit.$info.'</div>';
+            })
+            ->rawColumns(['is_active','action']) //for html tags
             ->make(true);
     }
 }

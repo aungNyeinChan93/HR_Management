@@ -11,7 +11,7 @@ class HomeController extends Controller
     //home
     public function home(){
         $users = User::query()->latest()->get();
-        UserLoginJob::dispatch(auth()->user()?? null);
+        UserLoginJob::dispatch();
         return view('users.home',compact('users'));
     }
 }
