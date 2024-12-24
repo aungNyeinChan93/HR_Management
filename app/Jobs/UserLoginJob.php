@@ -15,7 +15,7 @@ class UserLoginJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(Public User $user)
+    public function __construct(public User $user)
     {
         //
     }

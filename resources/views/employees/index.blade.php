@@ -8,10 +8,16 @@
             Employee Lists
         </x-header>
 
+        <div class="row px-5">
+            <div class="col-12">
+                <a href="{{ route('employees.create') }}" class="btn btn-secondary text-primary shadow-sm mb-3">Add Employee</a>
+            </div>
+        </div>
+
         <div class="row mt-4">
             <div class="col-12 px-5">
                 <div class="card overflow-scroll">
-                    <table id="DataTable" class="tabel table-success table-hover p-2">
+                    <table id="DataTable" class="tabel table-success table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>

@@ -1,0 +1,9 @@
+### Packages
+
+# datatabels => https://yajrabox.com/docs/laravel-datatables/master/installation ,
+             => https://datatables.net/examples/server_side/simple.html
+
+# date range picker => https://www.daterangepicker.com/#config
+
+# jsvalidatin laravel => https://github.com/proengsoft/laravel-jsvalidation/wiki/Laravel-7.x-installation
+

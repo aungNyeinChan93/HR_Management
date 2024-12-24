@@ -10,28 +10,41 @@
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.css">
+
     {{-- datatable md --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.material.css">
 
-    <title>{{ $title }}</title>
+    {{-- date range picker  --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    
+    <title>{{ $title ?? null }}</title>
 
 </head>
 
 <body class="">
     <div class="flex">
+
         {{-- sidebar --}}
-        <aside id="sidebar" class="w-64 bg-gray-900 text-white min-h-screen ">
+        <aside id="sidebar" style="display: block" class="w-64 bg-gray-900 text-white min-h-screen ">
             <div class="p-4">
-                <h2 class="text-2xl font-semibold ">{{$title}}</h2>
+                <h2 class="text-2xl font-semibold ">{{ $title ?? null }}</h2>
                 <ul class="mt-4">
-                    <li class="py-2 flex space-x-4 items-center"><i class="fa-solid fa-home text-red-500"></i><a href="/" class="hover:text-gray-400 ">Home</a></li>
-                    <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
-                    <li class="py-2 flex space-x-4 items-center"><i class="fa-solid fa-users text-red-500"></i><a href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
+                    <li class="py-2 flex space-x-4 items-center"><i class="fa-solid fa-home text-red-500"></i><a
+                            href="/" class="hover:text-gray-400 ">Home</a></li>
+                    <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a
+                            href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
+                    <li class="py-2 flex space-x-4 items-center"><i class="fa-solid fa-users text-red-500"></i><a
+                            href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
                     <li class="py-2"><a href="/services" class="hover:text-gray-400">Employees</a></li>
                     <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li>
                 </ul>
@@ -45,15 +58,15 @@
                 <nav class="bg-gray-800 px-6 py-2 flex justify-between items-center">
                     <div class="text-xl text-red-500 flex justify-between items-center ">HR Management <img
                             src="{{ asset('images/logo.png') }}" class=" ms-2 w-[30px]" alt=""></div>
-                    @auth
-                        <ul class="flex space-x-7 mt-3 items-center ">
-                            <li><a href="/" class="text-white hover:text-gray-400">Home</a></li>
+                    <ul class="flex space-x-7 mt-3 items-center ">
+                        <li><a href="/" class="text-white hover:text-gray-400">Home</a></li>
+                        @auth
                             <li><a href="{{ route('users.index') }}" class="text-white hover:text-gray-400">User</a></li>
-                            <li><a href="{{route('employees.index')}}" class="text-white hover:text-gray-400">Employees</a></li>
+                            <li><a href="{{ route('employees.index') }}"
+                                    class="text-white hover:text-gray-400">Employees</a></li>
                             <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li>
-
-                        </ul>
-                    @endauth
+                        @endauth
+                    </ul>
                     @guest
                         <div class="flex space-x-6">
                             <a href="/login" class="text-white hover:text-gray-400">Login</a>
@@ -87,18 +100,22 @@
 
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.js">
+</script>
 
 
 
 {{-- jquery --}}
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 
 {{-- datatable --}}
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.material.js"></script>
+
+{{-- date range picker --}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
 <script>
@@ -112,7 +129,7 @@
     });
 </script>
 
-{{-- js section --}}
+{{-- js section for x --}}
 {{ $scripts ?? null }}
 
 </html>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEmployeeRequest;
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -22,15 +24,16 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::query()->orderBy('title','asc')->get();
+        return view('employees.create',compact('departments'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -70,12 +73,12 @@ class EmployeeController extends Controller
         $employees = User::query()->with('department')->latest();
         return DataTables::of($employees)
             ->addColumn('department name', function ($each) {
-                return $each->department ? $each->department->title : "-";
+                return $each->department ? strtoupper($each->department->title) : "null";
             })
             ->editColumn("is_active", function ($each) {
                 return $each->is_active == 1 ? '<span class="badge badge-success p-1 rounded">Present</span>' : '<span class="badge badge-success p-1 rounded">Leave</span>';
             })
-            ->rawColumns(['is_active'])
+            ->rawColumns(['is_active']) //for html tags
             ->make(true);
     }
 }

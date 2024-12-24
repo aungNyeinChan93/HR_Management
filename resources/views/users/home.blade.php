@@ -8,7 +8,7 @@
         <div class="flex justify-center">
             <div class="w-full">
                 <x-header>
-                    Home Page <span class="font-mono text-red-400 text-lg">({{ Auth::user()->name }})</span>
+                    Home Page <span class="font-mono text-red-400 text-lg">({{ Auth::user()->name ?? null }})</span>
                 </x-header>
             </div>
         </div>

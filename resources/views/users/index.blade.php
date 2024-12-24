@@ -30,7 +30,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->department->title }}</td>
+                            <td>{{ strtoupper($user->department->title) }}</td>
                             <td>
                                 @can('delete', $user)
                                     <form action="{{ route('users.destory', $user->id) }}" method="POST">
