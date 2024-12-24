@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEmployeeRequest extends FormRequest
@@ -33,6 +34,8 @@ class StoreEmployeeRequest extends FormRequest
             'date_of_join'=>['required'],
             'gender'=>['required'],
             'department_id'=>['required'],
+            'password'=>['required',Password::default()]
+
         ];
     }
 }

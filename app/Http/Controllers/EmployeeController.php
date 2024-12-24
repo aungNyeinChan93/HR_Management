@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEmployeeRequest;
-use App\Models\Department;
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreEmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -33,7 +34,19 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        dd($request->all());
+        $data = $request->all();
+
+        if($request->hasFile('profile_image')){
+            $path = $request->file('profile_image')->store('employee_profileImage','public');
+            $data['profile_image'] = $path;
+        }
+
+        $data['password'] = Hash::make($request->password);
+
+        $user = User::create(attributes: $data);
+
+        return to_route('employees.index')->with('success','employee create success!');
+
     }
 
     /**
