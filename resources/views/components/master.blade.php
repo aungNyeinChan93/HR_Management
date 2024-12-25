@@ -44,14 +44,20 @@
                 <ul class="mt-4">
                     @auth
                         <li class="py-2 flex space-x-4 items-center"><i class="fa-solid fa-home text-red-500"></i><a
-                                href="{{route('home')}}" class="hover:text-gray-400 ">Home</a></li>
+                                href="{{ route('home') }}" class="hover:text-gray-400 ">Home</a></li>
                         <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a
                                 href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
                         <li class="py-2 flex space-x-3 items-center"><i class="fa-solid fa-users text-red-500"></i><a
                                 href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
                         <li class="py-2 flex items-center space-x-4"><i class="fa-brands fa-codepen text-red-500"></i><a
                                 href="{{ route('departments.index') }}" class="hover:text-gray-400">Departments</a></li>
-                        <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li>
+                        {{-- <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li> --}}
+                       <li class=" inline-block w-[80px] bg-gray-400 text-center py-1 px-2 my-4 rounded hover:bg-gray-600">
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit" class="text-white hover:text-gray-400">Logout</button>
+                            </form>
+                       </li>
                     @endauth
                 </ul>
             </div>
@@ -62,11 +68,13 @@
         <div class="flex-1">
             <div class="wrapper">
                 <nav class="bg-gray-800 px-6 py-2 flex justify-between items-center">
-                    <div class="text-xl text-red-500 flex justify-between items-center "><a href="{{route('welcome.index')}}">HR Management</a> <img
-                            src="{{ asset('images/logo.png') }}" class=" ms-2 w-[30px]" alt=""></div>
+                    <div class="text-xl text-red-500 flex justify-between items-center "><a
+                            href="{{ route('welcome.index') }}">HR Management</a>
+                        <img src="{{ asset('images/logo.png') }}" class=" ms-2 w-[30px]" alt="" />
+                    </div>
                     <ul class="flex space-x-7 mt-3 items-center ">
                         @auth
-                            <li><a href="{{route('home')}}" class="text-white hover:text-gray-400">Home</a></li>
+                            <li><a href="{{ route('home') }}" class="text-white hover:text-gray-400">Home</a></li>
                             <li><a href="{{ route('users.index') }}" class="text-white hover:text-gray-400">User</a></li>
                             <li><a href="{{ route('employees.index') }}"
                                     class="text-white hover:text-gray-400">Employees</a></li>
@@ -83,15 +91,22 @@
                     @endguest
 
                     <div class="flex space-x-6">
+                        <button id="toggleSidebar" class="text-white hover:text-gray-400">
+                            <i class="fas fa-bars"></i>
+                        </button>
                         @auth
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button type="submit" class="text-white hover:text-gray-400">Logout</button>
-                            </form>
+                        <div class="profile-image">
+                            @if (auth()->user()->profile_image)
+                                <a href="{{route('employees.show',auth()->user()->id)}}">
+                                    <img src="{{ asset('storage/'.auth()->user()->profile_image) }}" alt="profile_image" class="ms-2 w-[40px] p-1 rounded-xl">
+                                </a>
+                            @else
+                                <a href="{{route('employees.show',auth()->user()->id)}}">
+                                    <img src="{{asset('images/default.png')}}" alt="default" class="ms-2 w-[40px] p-1 rounded-xl">
+                                </a>
+                            @endif
+                        </div>
                         @endauth
-                            <button id="toggleSidebar" class="text-white hover:text-gray-400">
-                                <i class="fas fa-bars"></i>
-                            </button>
                     </div>
                 </nav>
             </div>

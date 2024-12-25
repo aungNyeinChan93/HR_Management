@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // home
     Route::get('/home',[HomeController::class,'home'])->name('home');
@@ -38,8 +39,10 @@ Route::middleware('auth')->group(function () {
 
     // Departments
     Route::get('departments',[DepartmentController::class,'index'])->name('departments.index');
+    Route::get('departments/create',[DepartmentController::class,'create'])->name('departments.create');
+    Route::post('departments/create',[DepartmentController::class,'store'])->name('departments.store');
     Route::get('departments/{department}',[DepartmentController::class,'show'])->name('departments.show');
+    Route::get('departments/{department}/delete',[DepartmentController::class,'destory'])->name('departments.destory');
     Route::get('departments/dataTables/ssd',[DepartmentController::class,'ssd'])->name('departments.ssd');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

@@ -33,14 +33,15 @@
                             <td>{{ strtoupper($user->department->title) }}</td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <a href="{{route('users.show',$user->id)}}" class="btn btn-sm btn-info">detail</a>
-                                    @can('delete', $user)
+                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info">detail</a>
+                                    {{-- @can('delete', $user) --}}
                                     <form action="{{ route('users.destory', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                            @if ($user->id == auth()->user()->id || auth()->user()->email != 'admin@123' ) disabled @endif>Delete</button>
                                     </form>
-                                @endcan
+                                    {{-- @endcan --}}
                                 </div>
                             </td>
                         </tr>
@@ -48,14 +49,13 @@
                 </x-table>
             </div>
             <div class="col-12 mt-3">
-                {{$users->links()}}
+                {{ $users->links() }}
             </div>
         </div>
     </div>
 
     <x-slot:scripts>
         <script>
-
             @if (session('success'))
                 swal({
                     title: "Delete Employee",
