@@ -70,7 +70,7 @@
                                         <li class="list-group-item">
                                             <div class="d-flex justify-content-between px-2">
                                                 <span>Is Present </span>
-                                                <span>{{$employee->is_active == 1 ? "present" :'leave'}}</span>
+                                                <span class="badge badge-danger p-1 ">{{$employee->is_active == 1 ? "present" :'leave'}}</span>
                                             </div>
                                         </li>
 

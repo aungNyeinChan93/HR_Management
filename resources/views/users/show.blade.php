@@ -18,7 +18,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-4">
-                                    <div class="d-flex justify-content-center mt-5 ">
+                                    <div class="d-flex justify-content-center  ">
                                         @if ($user->profile_image)
                                             <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
                                                 class="w-100 mx-auto px-2 img-fluid">

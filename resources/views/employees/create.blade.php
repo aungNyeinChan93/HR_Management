@@ -21,10 +21,12 @@
                                 @csrf
 
                                 <div class="mb-3 md-form">
-                                    <img src="" class="w-25 mx-auto p-4" id='image'>
+                                    <div id="image-container" class="d-flex justify-content-between align-item-center">
+                                        <img src="" class="w-25 mx-auto p-4" >
+                                    </div>
                                     <input type="file" name="profile_image"
                                         class="form-control @error('profile_image') is-invalid @enderror"
-                                        onchange="loadFile(event)">
+                                        onchange="loadFile(event)" multiple>
                                     @error('profile_image')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -177,13 +179,22 @@
 
 
         <script>
+            // image preview
             function loadFile(event) {
-                var reader = new FileReader();
-                reader.onload = function() {
-                    let image = document.getElementById("image");
-                    image.src = reader.result;
+                var files = event.target.files;
+                var imageContainer = document.getElementById("image-container");
+                imageContainer.innerHTML = ""; // Clear previous images
+
+                for (var i = 0; i < files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var img = document.createElement("img");
+                        img.src = e.target.result;
+                        img.className = "w-25 mx-auto p-4";
+                        imageContainer.appendChild(img);
+                    }
+                    reader.readAsDataURL(files[i]);
                 }
-                reader.readAsDataURL(event.target.files[0]);
             }
 
             // date range picker

@@ -5,7 +5,6 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
