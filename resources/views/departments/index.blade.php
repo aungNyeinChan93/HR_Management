@@ -8,8 +8,8 @@
         </x-header>
 
         <div>
-            <div class="card">
-                <table class="mdl-data-table  " id="departmentTable">
+            <div class="card p-4">
+                <table class="mdl-data-table p-4 " id="departmentTable">
                     <thead>
                         <tr>
                             <th>No</th>

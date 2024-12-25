@@ -32,7 +32,7 @@
         <div class="row mt-4">
             <div class="col-12 px-5">
                 <div class="card overflow-scroll">
-                    <table id="DataTable" class="tabel table-success table-hover">
+                    <table id="DataTable" class="tabel table-success table-hover mdl-data-table">
                         <thead>
                             <tr>
                                 <th>No</th>
