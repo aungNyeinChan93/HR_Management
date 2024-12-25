@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\User;
 use App\Jobs\TestJob;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +15,11 @@ Route::group(['prefix'=>'test'],function(){
        TestJob::dispatch($name);
        dump('Job dispatched');
     });
+
+
+    Route::get('name',function(){
+        $user = User::find(10);
+        dump($user->upperName());
+    });
 });
+

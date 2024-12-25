@@ -135,9 +135,13 @@ class EmployeeController extends Controller
             ->addColumn('action', function ($each) {
                 $edit = "<a href=" . route('employees.edit', $each->id) . " class='btn btn-sm btn-warning mx-1'>Edit</a>";
                 $info = "<a href=" . route('employees.show', $each->id) . " class='btn btn-sm btn-info mx-1'>Detail</a>";
-                return '<div class="d-flex ">' . $edit . $info . '</div>';
+                $delete = "<a href=" . route('employees.show', $each->id) . " class='btn btn-sm btn-info mx-1'>Detail</a>";
+                return '<div class="d-flex ">' . $info . $edit .     '</div>';
             })
-            ->rawColumns(['is_active', 'action']) //for html tags
+            ->addColumn("profile_image",function($each){
+                return $each->profile_image ? '<img class="w-75 p-2 rounded img-fluid" src='.asset('storage/'.$each->profile_image).' /"> ' : '<img class="w-75 rounded p-2 img-fluid" src='.asset('images/default.png').'  />';
+            })
+            ->rawColumns(['is_active', 'action','profile_image']) //for html tags
             ->make(true);
     }
 }
