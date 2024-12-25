@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 require_once __DIR__ . '/test.php';
 
+// profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -28,7 +29,6 @@ Route::delete("users/delete/{user}",[UserController::class,'destory'])->name('us
 // employees
 Route::resource('employees',EmployeeController::class);
 Route::get('employees/dataTables/ssd',[EmployeeController::class,'ssd']);
-
 
 // Departments
 Route::get('departments',[DepartmentController::class,'index'])->name('departments.index');

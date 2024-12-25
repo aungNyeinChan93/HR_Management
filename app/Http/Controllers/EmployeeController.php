@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -60,7 +61,8 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $employee = User::with('department')->findOrFail($id);
+        return view('employees.show',compact('employee'));
     }
 
     /**
@@ -76,7 +78,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreEmployeeRequest $request, string $id)
+    public function update(UpdateEmployeeRequest $request, string $id)
     {
         $employee = User::findOrFail($id);
 
@@ -96,6 +98,7 @@ class EmployeeController extends Controller
             $data['profile_image'] = $employee->profile_image;
 
         }
+
         $data['password'] = Hash::make($request->password);
 
         $employee->update($data);
