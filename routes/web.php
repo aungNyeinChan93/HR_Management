@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -26,3 +28,9 @@ Route::delete("users/delete/{user}",[UserController::class,'destory'])->name('us
 // employees
 Route::resource('employees',EmployeeController::class);
 Route::get('employees/dataTables/ssd',[EmployeeController::class,'ssd']);
+
+
+// Departments
+Route::get('departments',[DepartmentController::class,'index'])->name('departments.index');
+Route::get('departments/{department}',[DepartmentController::class,'show'])->name('departments.show');
+Route::get('departments/dataTables/ssd',[DepartmentController::class,'ssd'])->name('departments.ssd');

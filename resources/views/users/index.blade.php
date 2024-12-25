@@ -53,4 +53,17 @@
         </div>
     </div>
 
+    <x-slot:scripts>
+        <script>
+
+            @if (session('success'))
+                swal({
+                    title: "Delete Employee",
+                    text: "You have been delete successfully ",
+                    icon: "success",
+                });
+            @endif
+        </script>
+    </x-slot:scripts>
+
 </x-master>

@@ -35,7 +35,7 @@
 </head>
 
 <body class="">
-    <div class="flex">
+    <div class="flex">  
 
         {{-- sidebar --}}
         <aside id="sidebar" style="display: block" class="w-64 bg-gray-900 text-white min-h-screen ">
@@ -44,12 +44,15 @@
                 <ul class="mt-4">
                     <li class="py-2 flex space-x-4 items-center"><i class="fa-solid fa-home text-red-500"></i><a
                             href="/" class="hover:text-gray-400 ">Home</a></li>
-                    <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a
-                            href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
-                    <li class="py-2 flex space-x-4 items-center"><i class="fa-solid fa-users text-red-500"></i><a
-                            href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
-                    <li class="py-2"><a href="/services" class="hover:text-gray-400">Employees</a></li>
-                    <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li>
+                    @auth
+                        <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a
+                                href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
+                        <li class="py-2 flex space-x-3 items-center"><i class="fa-solid fa-users text-red-500"></i><a
+                                href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
+                        <li class="py-2 flex items-center space-x-4"><i class="fa-brands fa-codepen text-red-500"></i><a href="{{ route('departments.index') }}"
+                                class="hover:text-gray-400">Departments</a></li>
+                        <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li>
+                    @endauth
                 </ul>
             </div>
         </aside>
@@ -67,6 +70,8 @@
                             <li><a href="{{ route('users.index') }}" class="text-white hover:text-gray-400">User</a></li>
                             <li><a href="{{ route('employees.index') }}"
                                     class="text-white hover:text-gray-400">Employees</a></li>
+                            <li><a href="{{ route('departments.index') }}"
+                                    class="text-white hover:text-gray-400">Departments</a></li>
                             <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li>
                         @endauth
                     </ul>
