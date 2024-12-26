@@ -24,17 +24,32 @@
                             numquam ea!
                         </p>
 
-                        <div class="mt-8 flex flex-wrap justify-center gap-4">
-                            <a class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                                href="#">
-                                Get Started
-                            </a>
+                        @guest
+                            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                                <a class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                                    href="/login">
+                                    Login
+                                </a>
 
-                            <a class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                                href="#">
-                                Learn More
-                            </a>
-                        </div>
+                                <a class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                                    href="/register">
+                                    Register
+                                </a>
+                            </div>
+                        @endguest
+
+                        @auth
+                            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                                        href="/logout">
+                                        Logout
+                                    </button>
+                                </form>
+                            </div>
+                        @endauth
                     </div>
                 </div>
             </section>

@@ -51,13 +51,15 @@
                                 href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
                         <li class="py-2 flex items-center space-x-4"><i class="fa-brands fa-codepen text-red-500"></i><a
                                 href="{{ route('departments.index') }}" class="hover:text-gray-400">Departments</a></li>
+                        <li class="py-2 flex items-center space-x-4"><i class="fa-solid fa-star text-red-500"></i><a
+                                href="{{ route('roles.index') }}" class="hover:text-gray-400">Role</a></li>
                         {{-- <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li> --}}
-                       <li class=" inline-block w-[80px] bg-gray-400 text-center py-1 px-2 my-4 rounded hover:bg-gray-600">
+                        <li class=" inline-block w-[80px] bg-gray-400 text-center py-1 px-2 my-4 rounded hover:bg-gray-600">
                             <form action="/logout" method="post">
                                 @csrf
                                 <button type="submit" class="text-white hover:text-gray-400">Logout</button>
                             </form>
-                       </li>
+                        </li>
                     @endauth
                 </ul>
             </div>
@@ -80,7 +82,8 @@
                                     class="text-white hover:text-gray-400">Employees</a></li>
                             <li><a href="{{ route('departments.index') }}"
                                     class="text-white hover:text-gray-400">Departments</a></li>
-                            <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li>
+                            <li><a href="{{ route('roles.index') }}" class="text-white hover:text-gray-400">Role</a></li>
+                            {{-- <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li> --}}
                         @endauth
                     </ul>
                     @guest
@@ -95,17 +98,19 @@
                             <i class="fas fa-bars"></i>
                         </button>
                         @auth
-                        <div class="profile-image">
-                            @if (auth()->user()->profile_image)
-                                <a href="{{route('employees.show',auth()->user()->id)}}">
-                                    <img src="{{ asset('storage/'.auth()->user()->profile_image) }}" alt="profile_image" class="ms-2 w-[40px] p-1 rounded-xl">
-                                </a>
-                            @else
-                                <a href="{{route('employees.show',auth()->user()->id)}}">
-                                    <img src="{{asset('images/default.png')}}" alt="default" class="ms-2 w-[40px] p-1 rounded-xl">
-                                </a>
-                            @endif
-                        </div>
+                            <div class="profile-image">
+                                @if (auth()->user()->profile_image)
+                                    <a href="{{ route('employees.show', auth()->user()->id) }}">
+                                        <img src="{{ asset('storage/' . auth()->user()->profile_image) }}"
+                                            alt="profile_image" class="ms-2 w-[40px] p-1 rounded-xl">
+                                    </a>
+                                @else
+                                    <a href="{{ route('employees.show', auth()->user()->id) }}">
+                                        <img src="{{ asset('images/default.png') }}" alt="default"
+                                            class="ms-2 w-[40px] p-1 rounded-xl">
+                                    </a>
+                                @endif
+                            </div>
                         @endauth
                     </div>
                 </nav>
