@@ -51,21 +51,22 @@
                                 href="{{ route('home') }}" class="hover:text-gray-400 ">Home</a></li>
                         <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a
                                 href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
-                        <li class="py-2 flex space-x-3 items-center"><i class="fa-solid fa-users text-red-500"></i><a
-                                href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
-                        <li class="py-2 flex items-center space-x-4"><i class="fa-brands fa-codepen text-red-500"></i><a
-                                href="{{ route('departments.index') }}" class="hover:text-gray-400">Departments</a></li>
-                        <li class="py-2 flex items-center space-x-4"><i class="fa-solid fa-star text-red-500"></i><a
-                                href="{{ route('roles.index') }}" class="hover:text-gray-400">Role</a></li>
-                        <li class="py-2 flex items-center space-x-4"><i class="fa-solid fa-lock-open text-red-500"></i><a
-                                href="{{ route('permissions.index') }}" class="hover:text-gray-400">Permission</a></li>
-                        {{-- <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li> --}}
-                        <li class=" inline-block w-[80px] bg-gray-400 text-center py-1 px-2 my-4 rounded hover:bg-gray-600">
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button type="submit" class="text-white hover:text-gray-400">Logout</button>
-                            </form>
-                        </li>
+                        @role(['HR', 'CEO'])
+                            <li class="py-2 flex space-x-3 items-center"><i class="fa-solid fa-users text-red-500"></i><a
+                                    href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
+                            <li class="py-2 flex items-center space-x-4"><i class="fa-brands fa-codepen text-red-500"></i><a
+                                    href="{{ route('departments.index') }}" class="hover:text-gray-400">Departments</a></li>
+                            <li class="py-2 flex items-center space-x-4"><i class="fa-solid fa-star text-red-500"></i><a
+                                    href="{{ route('roles.index') }}" class="hover:text-gray-400">Role</a></li>
+                            <li class="py-2 flex items-center space-x-4"><i class="fa-solid fa-lock-open text-red-500"></i><a
+                                    href="{{ route('permissions.index') }}" class="hover:text-gray-400">Permission</a></li>
+                            <li class=" inline-block w-[80px] bg-gray-400 text-center py-1 px-2 my-4 rounded hover:bg-gray-600">
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="text-white hover:text-gray-400">Logout</button>
+                                </form>
+                            </li>
+                        @endrole
                     @endauth
                 </ul>
             </div>
@@ -84,13 +85,15 @@
                         @auth
                             <li><a href="{{ route('home') }}" class="text-white hover:text-gray-400">Home</a></li>
                             <li><a href="{{ route('users.index') }}" class="text-white hover:text-gray-400">User</a></li>
-                            <li><a href="{{ route('employees.index') }}"
-                                    class="text-white hover:text-gray-400">Employees</a></li>
-                            <li><a href="{{ route('departments.index') }}"
-                                    class="text-white hover:text-gray-400">Departments</a></li>
-                            <li><a href="{{ route('roles.index') }}" class="text-white hover:text-gray-400">Role</a></li>
-                            <li><a href="{{ route('permissions.index') }}"
-                                    class="text-white hover:text-gray-400">Permission</a></li>
+                            @role(['HR', 'CEO'])
+                                <li><a href="{{ route('employees.index') }}"
+                                        class="text-white hover:text-gray-400">Employees</a></li>
+                                <li><a href="{{ route('departments.index') }}"
+                                        class="text-white hover:text-gray-400">Departments</a></li>
+                                <li><a href="{{ route('roles.index') }}" class="text-white hover:text-gray-400">Role</a></li>
+                                <li><a href="{{ route('permissions.index') }}"
+                                        class="text-white hover:text-gray-400">Permission</a></li>
+                            @endrole
                             {{-- <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li> --}}
                         @endauth
                     </ul>
@@ -176,7 +179,6 @@
             sidebar.style.display = 'none';
         }
     });
-
 </script>
 
 {{-- js section for x --}}

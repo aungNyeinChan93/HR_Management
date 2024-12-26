@@ -43,11 +43,12 @@
                                     <a href="{{ route('users.show', $user->id) }}"
                                         class="btn btn-sm btn-info">detail</a>
                                     {{-- @can('delete', $user) --}}
+
                                     <form action="{{ route('users.destory', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger"
-                                            @if ($user->id == auth()->user()->id || auth()->user()->email != 'admin@123') disabled @endif>Delete</button>
+                                            @if ($user->id == auth()->user()->id || !auth()->user()->hasRole(['HR','CEO'])) disabled @endif>Delete</button>
                                     </form>
                                     {{-- @endcan --}}
                                 </div>

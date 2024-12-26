@@ -8,7 +8,7 @@
         </x-header>
         <div class="wrapper">
             <div class="row mt-5">
-                <div class="col-md-6 offset-3">
+                <div class="col-md-10 offset-1">
                     <div class="card p-4">
                         <a href="{{ route('roles.index') }}" class="ms-2 text-secondary"> Back</a>
 
@@ -22,9 +22,9 @@
                                 @enderror
                             </div>
                             <div class="my-2">
-                                <div class="row ps-4 py-2">
+                                <div class="row ps-4">
                                     @foreach ($permissions as $permission)
-                                        <div class="col-6 col-md-3">
+                                        <div class="col-6 col-md-3 my-1 p-1">
                                             <label for="permission_{{$permission->id}}">{{ $permission->name }}</label>
                                             <input type="checkbox" name="permissions[]" value="{{$permission->name}}"  id="permission_{{$permission->id}}" ">
                                         </div>

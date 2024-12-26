@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::with('department')->when($request->search, function ($query) use ($request) {
             $query->whereAny(['name', 'email'], 'like', '%' . $request->search . '%');
-        })  
+        })
         ->latest()->paginate(10);
         return view('users.index', compact('users'));
     }

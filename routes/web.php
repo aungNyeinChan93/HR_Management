@@ -33,26 +33,32 @@ Route::middleware('auth')->group(function () {
     // users
     Route::get("users",[UserController::class,'index'])->name('users.index');
     Route::get("users/{user}",[UserController::class,'show'])->name('users.show');
-    Route::delete("users/delete/{user}",[UserController::class,'destory'])->name('users.destory');
 
-    // employees
-    Route::resource('employees',EmployeeController::class);
-    Route::get('employees/dataTables/ssd',[EmployeeController::class,'ssd']);
+    //middleware HR
+    Route::middleware(['role:HR'])->group(function(){
 
-    // Departments
-    Route::get('departments',[DepartmentController::class,'index'])->name('departments.index');
-    Route::get('departments/create',[DepartmentController::class,'create'])->name('departments.create');
-    Route::post('departments/create',[DepartmentController::class,'store'])->name('departments.store');
-    Route::get('departments/{department}',[DepartmentController::class,'show'])->name('departments.show');
-    Route::get('departments/{department}/delete',[DepartmentController::class,'destory'])->name('departments.destory');
-    Route::get('departments/dataTables/ssd',[DepartmentController::class,'ssd'])->name('departments.ssd');
+        // users
+        Route::delete("users/delete/{user}",[UserController::class,'destory'])->name('users.destory');
 
-    // roles
-    Route::resource('roles',RoleController::class);
-    Route::get('roles/dataTables/ssd',[RoleController::class,'ssd']);
+        // employees
+        Route::resource('employees',EmployeeController::class);
+        Route::get('employees/dataTables/ssd',[EmployeeController::class,'ssd']);
 
-    // permissions
-    Route::resource('permissions',PermissionController::class);
-    Route::get('permissions/dataTables/ssd',[PermissionController::class,'ssd']);
+        // Departments
+        Route::get('departments',[DepartmentController::class,'index'])->name('departments.index');
+        Route::get('departments/create',[DepartmentController::class,'create'])->name('departments.create');
+        Route::post('departments/create',[DepartmentController::class,'store'])->name('departments.store');
+        Route::get('departments/{department}',[DepartmentController::class,'show'])->name('departments.show');
+        Route::get('departments/{department}/delete',[DepartmentController::class,'destory'])->name('departments.destory');
+        Route::get('departments/dataTables/ssd',[DepartmentController::class,'ssd'])->name('departments.ssd');
+
+        // roles
+        Route::resource('roles',RoleController::class);
+        Route::get('roles/dataTables/ssd',[RoleController::class,'ssd']);
+
+        // permissions
+        Route::resource('permissions',PermissionController::class);
+        Route::get('permissions/dataTables/ssd',[PermissionController::class,'ssd']);
+    });
 });
 

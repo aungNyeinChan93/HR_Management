@@ -24,8 +24,10 @@
 
         <div class="row px-5">
             <div class="col-12">
+               @role(['HR','CEO'])
                 <a href="{{ route('employees.create') }}" class="btn btn-secondary text-primary shadow-sm mb-3">Add
                     Employee</a>
+                @endrole
             </div>
         </div>
 
