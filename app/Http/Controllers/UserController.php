@@ -12,31 +12,36 @@ use RealRashid\SweetAlert\Facades\Alert;
 class UserController extends Controller
 {
     //index
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest()->paginate(10);
-        return view('users.index',compact('users'));
+        $users = User::with('department')->when($request->search, function ($query) use ($request) {
+            $query->whereAny(['name', 'email'], 'like', '%' . $request->search . '%');
+        })  
+        ->latest()->paginate(10);
+        return view('users.index', compact('users'));
     }
 
     //show
-    public function show(User $user){
+    public function show(User $user)
+    {
 
         Alert::success('Test', 'Success Message');
 
-        return view('users.show',compact("user"));
+        return view('users.show', compact("user"));
     }
 
     // destory
-    public function destory(User $user){
+    public function destory(User $user)
+    {
 
-        Gate::authorize('delete',$user);
+        Gate::authorize('delete', $user);
 
-        if(file_exists(public_path('storage/'.$user->profile_image))){
-            File::delete(public_path('storage/'.$user->profile_image));
+        if (file_exists(public_path('storage/' . $user->profile_image))) {
+            File::delete(public_path('storage/' . $user->profile_image));
         }
 
         $user->delete();
 
-        return to_route('users.index')->with('success','user delete success!');
+        return to_route('users.index')->with('success', 'user delete success!');
     }
 }

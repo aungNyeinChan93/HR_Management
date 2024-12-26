@@ -25,6 +25,13 @@
                     <x-slot:header>
                         User Lists
                     </x-slot:header>
+                    <div class="d-inline-block float-end mx-3 py-1">
+                        <form action="{{ route('users.index') }}" method="GET" onsubmit="return event.keyCode != 13;" >
+                            @csrf
+                            <input type="text" name="search" class="form-control" placeholder="Search..."
+                                onkeydown="if(event.keyCode == 13) { this.form.submit(); return false; }" value="{{request()->search}}" autofocus>
+                        </form>
+                    </div>
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
@@ -33,13 +40,14 @@
                             <td>{{ strtoupper($user->department->title) }}</td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info">detail</a>
+                                    <a href="{{ route('users.show', $user->id) }}"
+                                        class="btn btn-sm btn-info">detail</a>
                                     {{-- @can('delete', $user) --}}
                                     <form action="{{ route('users.destory', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger"
-                                            @if ($user->id == auth()->user()->id || auth()->user()->email != 'admin@123' ) disabled @endif>Delete</button>
+                                            @if ($user->id == auth()->user()->id || auth()->user()->email != 'admin@123') disabled @endif>Delete</button>
                                     </form>
                                     {{-- @endcan --}}
                                 </div>

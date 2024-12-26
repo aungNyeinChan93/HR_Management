@@ -10,4 +10,8 @@
 # sweetAlert => https://sweetalert.js.org/
 # sweetAlert 2 => https://realrashid.github.io
 
+# spatie permission => https://spatie.be/docs/laravel-permission/v6/introduction
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"//
+
+
 
