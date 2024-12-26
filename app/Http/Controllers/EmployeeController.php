@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateEmployeeRequest;
+use App\Jobs\EmployeeCreateJob;
+use App\Mail\EmployeeCreateMail;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -49,6 +52,8 @@ class EmployeeController extends Controller
         $data['password'] = Hash::make($request->password);
 
         $user = User::create(attributes: $data);
+
+        EmployeeCreateJob::dispatch($user);
 
         Alert::success('Success Employee Create', 'Success Message');
 
