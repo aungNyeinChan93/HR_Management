@@ -9,17 +9,56 @@ use Illuminate\Support\Facades\Route;
 //     return view('test.home');
 // })->name('home');
 
-Route::group(['prefix'=>'test'],function(){
+Route::group(['prefix' => 'test'], function () {
 
-    Route::get('job/{name}',function($name){
-       TestJob::dispatch($name);
-       dump('Job dispatched');
+    Route::get('job/{name}', function ($name) {
+        TestJob::dispatch($name);
+        dump('Job dispatched');
     });
 
 
-    Route::get('name',function(){
+    Route::get('name', function () {
         $user = User::find(10);
         dump($user->upperName());
     });
+
+
+    Route::get('roles/HR', function () {
+        if (auth()->user()) {
+            if (!auth()->user()->hasRole('HR')) {
+                abort(403);
+            }
+            return "welcome";
+        } else {
+            return redirect('/login');
+        }
+    });
+
+    Route::get('permissions/edit_employees', function () {
+        try {
+            if (!auth()->user()?->can('edit_employees')) {
+                abort(403);
+            }
+            return "welcome";
+
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    });
+
+    Route::get('roles/middleware', function () {
+        return 'welcome';
+    })->middleware(['role:HR']);
+
+    Route::get('permissions/SSS', function () {
+        if (!auth()->user()->can('SSS')) {
+            abort(403, 'danger alert!!!');
+        }
+        return 'welcome to SSS service!';
+    });
+
+    Route::get('permissions/SSS/middleware', function () {
+        return 'welcome to SSS service! {middleware}';
+    })->middleware(['permission:SSS']);
 });
 

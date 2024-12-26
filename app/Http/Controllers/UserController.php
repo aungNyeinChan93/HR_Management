@@ -36,6 +36,10 @@ class UserController extends Controller
 
         Gate::authorize('delete', $user);
 
+        if(auth()->user()->hasRole('HR')){
+            abort(403);
+        }
+
         if (file_exists(public_path('storage/' . $user->profile_image))) {
             File::delete(public_path('storage/' . $user->profile_image));
         }

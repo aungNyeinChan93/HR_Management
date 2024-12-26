@@ -22,9 +22,11 @@
         <div class="row px-2 my-4">
             <div class="col-12">
                 <x-table>
+
                     <x-slot:header>
                         User Lists
                     </x-slot:header>
+
                     <div class="d-inline-block float-end mx-3 py-1">
                         <form action="{{ route('users.index') }}" method="GET" onsubmit="return event.keyCode != 13;" >
                             @csrf
@@ -32,6 +34,7 @@
                                 onkeydown="if(event.keyCode == 13) { this.form.submit(); return false; }" value="{{request()->search}}" autofocus>
                         </form>
                     </div>
+
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
@@ -42,8 +45,8 @@
                                 <div class="d-flex justify-content-around">
                                     <a href="{{ route('users.show', $user->id) }}"
                                         class="btn btn-sm btn-info">detail</a>
-                                    {{-- @can('delete', $user) --}}
 
+                                    {{-- @can('delete', $user) --}}
                                     <form action="{{ route('users.destory', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

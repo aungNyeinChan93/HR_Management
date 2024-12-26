@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanySettingController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
@@ -59,6 +60,10 @@ Route::middleware('auth')->group(function () {
         // permissions
         Route::resource('permissions',PermissionController::class);
         Route::get('permissions/dataTables/ssd',[PermissionController::class,'ssd']);
+
+        // companysetting
+        Route::get('company',[CompanySettingController::class,'index'])->name('company.index');
+        Route::get('company/create',[CompanySettingController::class,'create'])->name('company.create');
     });
 });
 
