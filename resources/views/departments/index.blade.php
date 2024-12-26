@@ -7,7 +7,7 @@
 
 
         <x-header>
-            Depatments
+            Departments
         </x-header>
 
         @session('success')

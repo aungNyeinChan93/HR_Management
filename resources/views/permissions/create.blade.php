@@ -1,18 +1,18 @@
 <x-master>
     <x-slot:title>
-        role create
+        Permission create
     </x-slot:title>
     <div class="container mx-auto">
         <x-header>
-            Role Create
+            Permission Create
         </x-header>
         <div class="wrapper">
             <div class="row mt-5">
                 <div class="col-md-6 offset-3">
                     <div class="card p-4">
-                        <a href="{{route('roles.index')}}" class="ms-2 text-secondary"> Back</a>
+                        <a href="{{route('permissions.index')}}" class="ms-2 text-secondary"> Back</a>
 
-                        <form action="{{route('roles.store')}}" method="POST">
+                        <form action="{{route('permissions.store')}}" method="POST">
                             @csrf
                             <div class="my-2">
                                 <input type="text" name="name" value="{{old('name')}}" placeholder="name" class="form-control">

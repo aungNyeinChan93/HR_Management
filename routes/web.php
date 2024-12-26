@@ -3,6 +3,7 @@
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -46,8 +47,12 @@ Route::middleware('auth')->group(function () {
     Route::get('departments/{department}/delete',[DepartmentController::class,'destory'])->name('departments.destory');
     Route::get('departments/dataTables/ssd',[DepartmentController::class,'ssd'])->name('departments.ssd');
 
-    // employees
+    // roles
     Route::resource('roles',RoleController::class);
     Route::get('roles/dataTables/ssd',[RoleController::class,'ssd']);
+
+    // roles
+    Route::resource('permissions',PermissionController::class);
+    Route::get('permissions/dataTables/ssd',[PermissionController::class,'ssd']);
 });
 

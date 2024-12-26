@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\DataTables;
-use Spatie\Permission\Models\Role;
 
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $roles = Role::query()->get();
-        return view('roles.index', compact('roles'));
+        $permissions = Permission::query()->get();
+        return view('permissions.index', compact('permissions'));
     }
 
     /**
@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        return view('permissions.create');
     }
 
     /**
@@ -37,9 +37,9 @@ class RoleController extends Controller
             'name' => 'required',
         ]);
 
-        Role::create($fileds);
+        Permission::create($fileds);
 
-        return to_route('roles.index')->with('success', 'Role Create Success!');
+        return to_route('permissions.index')->with('success', 'Permission Create Success!');
     }
 
     /**
@@ -47,8 +47,8 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        $role=Role::findOrFail($id);
-        return view('roles.show',compact('role'));
+        $permission=Permission::findOrFail($id);
+        return view('permissions.show',compact('permission'));
     }
 
     /**
@@ -56,8 +56,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role= Role::findOrFail($id);
-        return view('roles.edit',compact('role'));
+        $permission= Permission::findOrFail($id);
+        return view('permissions.edit',compact('permission'));
     }
 
     /**
@@ -69,11 +69,11 @@ class RoleController extends Controller
             'name'=>'required',
         ]);
 
-        $role= Role::find($id);
-        $role->update([
+        $permission= Permission::find($id);
+        $permission->update([
             'name'=>$request->name
         ]);
-        return to_route('roles.index')->with('success','Role Update Success!');
+        return to_route('permissions.index')->with('success','Permisssion Update Success!');
     }
 
     /**
@@ -81,21 +81,21 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        Role::findOrFail($id)->delete();
+        Permission::findOrFail($id)->delete();
 
-        return to_route('roles.index')->with('success','Delete Success!');
+        return to_route('permissions.index')->with('success','Delete Success!');
     }
 
     public function ssd()
     {
-        $roles = Role::query()->latest();
+        $permissions = Permission::query()->latest();
 
-        return DataTables::of($roles)
+        return DataTables::of($permissions)
             ->editColumn('created_at', function ($each) {
                 return $each->created_at->format('j-F-Y');
             })
             ->addColumn('action', function ($each) {
-                $detail = '<span> <a href=' . route('roles.show', $each->id) . ' class="btn btn-sm btn-info p-1  mx-1"/>Detail</span>';
+                $detail = '<span> <a href=' . route('permissions.show', $each->id) . ' class="btn btn-sm btn-info p-1  mx-1"/>Detail</span>';
                 return '<div> '.$detail.' </div>';
             })
             ->rawColumns(['action']) //for html tags

@@ -16,7 +16,10 @@
                             @csrf
                             @method('put')
                             <div class="my-2">
-                                <input type="text" name="name" value="{{$role->name}}" placeholder="name" class="form-control">
+                                <input type="text" name="name"  value="{{old('name') ??$role->name}}" placeholder="name" class="form-control">
+                                @error('name')
+                                    <span class="text-danger">{{$message}}</span>   
+                                @enderror
                             </div>
                             <div class="my-2">
                                 <input type="submit" value="Update" class="btn btn-secondary ">
