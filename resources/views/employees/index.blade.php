@@ -38,10 +38,11 @@
                                 {{-- <th>No</th> --}}
                                 <th>Profile Image</th>
                                 <th>Name</th>
-                                <th>Email</th>
+                                {{-- <th>Email</th> --}}
                                 {{-- <th>Phone</th>
                                 <th>Address</th> --}}
                                 <th>Department</th>
+                                <th>Roles</th>
                                 <th>Is Active</th>
                                 {{-- <th>Create Date</th> --}}
                                 <th>Update Date</th>
@@ -73,10 +74,10 @@
                         data: 'name',
                         name: 'name'
                     },
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
+                    // {
+                    //     data: 'email',
+                    //     name: 'email'
+                    // },
                     // {
                     //     data: 'phone',
                     //     name: 'phone'
@@ -88,6 +89,10 @@
                     {
                         data: 'department name',
                         name: 'department name'
+                    },
+                    {
+                        data: 'roles',
+                        name: 'roles'
                     },
                     {
                         data: 'is_active',

@@ -152,7 +152,8 @@
                                 </div>
 
                                 <div class="mt-2 md-form">
-                                    <select name="roles[]" id="" class="select2 p-2 form-select form-select-sm" multiple>
+                                    <label for="roles" class="ms-2 form-label">Role</label>
+                                    <select name="roles[]" id="roles" class="select2 p-2 form-select form-select-sm" multiple>
                                         @foreach ($roles as $role)
                                             <option value="{{$role->name}}"
                                                 @if (in_array( $role->name, $employee->roles->pluck('name')->toArray()))

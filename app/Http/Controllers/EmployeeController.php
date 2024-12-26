@@ -154,7 +154,12 @@ class EmployeeController extends Controller
             ->addColumn("profile_image",function($each){
                 return $each->profile_image ? '<img class="w-75 p-2 rounded img-fluid" src='.asset('storage/'.$each->profile_image).' /"> ' : '<img class="w-75 rounded p-2 img-fluid" src='.asset('images/default.png').'  />';
             })
-            ->rawColumns(['is_active', 'action','profile_image']) //for html tags
+            ->addColumn('roles',function($each){
+                return $each->roles->map(function($role) {
+                    return '<small class=" my-1 badge badge-danger p-1 mx-1">' . $role->name . '</small>';
+                })->implode(' ');
+            })
+            ->rawColumns(['is_active', 'action','profile_image','roles']) //for html tags
             ->make(true);
     }
 }
