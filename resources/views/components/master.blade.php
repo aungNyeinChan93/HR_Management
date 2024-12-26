@@ -29,6 +29,10 @@
     {{-- date range picker  --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    {{-- select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
 
     <title>{{ $title ?? null }}</title>
 
@@ -85,7 +89,8 @@
                             <li><a href="{{ route('departments.index') }}"
                                     class="text-white hover:text-gray-400">Departments</a></li>
                             <li><a href="{{ route('roles.index') }}" class="text-white hover:text-gray-400">Role</a></li>
-                            <li><a href="{{ route('permissions.index') }}" class="text-white hover:text-gray-400">Permission</a></li>
+                            <li><a href="{{ route('permissions.index') }}"
+                                    class="text-white hover:text-gray-400">Permission</a></li>
                             {{-- <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li> --}}
                         @endauth
                     </ul>
@@ -152,7 +157,17 @@
 {{-- sweet alert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+{{-- select2  --}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
+    $(document).ready(function() {
+        $('.select2').select2({
+
+        });
+    });
+
+
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         var sidebar = document.getElementById('sidebar');
         if (sidebar.style.display === 'none') {
@@ -161,6 +176,7 @@
             sidebar.style.display = 'none';
         }
     });
+
 </script>
 
 {{-- js section for x --}}

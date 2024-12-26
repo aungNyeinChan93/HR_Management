@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\EmployeeCreateJob;
-use App\Mail\EmployeeCreateMail;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Jobs\EmployeeCreateJob;
+use App\Mail\EmployeeCreateMail;
 use Yajra\DataTables\DataTables;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -33,8 +34,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        $roles =Role::query()->get();
         $departments = Department::query()->orderBy('title', 'asc')->get();
-        return view('employees.create', compact('departments'));
+        return view('employees.create', compact('departments','roles'));
     }
 
     /**
@@ -42,7 +44,8 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        $data = $request->all();
+
+        $data = $request->except('roles');
 
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('employee_profileImage', 'public');
@@ -52,6 +55,8 @@ class EmployeeController extends Controller
         $data['password'] = Hash::make($request->password);
 
         $user = User::create(attributes: $data);
+
+        $user->syncRoles($request->roles);  //can use => assignRole and removeRole
 
         EmployeeCreateJob::dispatch($user);
 

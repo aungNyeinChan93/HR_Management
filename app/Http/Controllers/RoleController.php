@@ -44,7 +44,7 @@ class RoleController extends Controller
         $role = Role::create($fileds);
 
         // $role->givePermissionTo($request->permissions);
-        $role->syncPermissions($request->permissions);
+        $role->syncPermissions($request->permissions); //arg=> array[]
 
         return to_route('roles.index')->with('success', 'Role Create Success!');
     }
@@ -79,8 +79,8 @@ class RoleController extends Controller
 
         $role= Role::find($id);
 
-        $role->revokePermissionTo($role->permissions);
-        // $role->syncPermissions($request->permissions);
+        // $role->revokePermissionTo($role->permissions);
+        $role->syncPermissions($request->permissions);
 
         $role->update([
             'name'=>$request->name
