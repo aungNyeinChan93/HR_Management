@@ -53,6 +53,8 @@
                                 href="{{ route('departments.index') }}" class="hover:text-gray-400">Departments</a></li>
                         <li class="py-2 flex items-center space-x-4"><i class="fa-solid fa-star text-red-500"></i><a
                                 href="{{ route('roles.index') }}" class="hover:text-gray-400">Role</a></li>
+                        <li class="py-2 flex items-center space-x-4"><i class="fa-solid fa-lock-open text-red-500"></i><a
+                                href="{{ route('permissions.index') }}" class="hover:text-gray-400">Permission</a></li>
                         {{-- <li class="py-2"><a href="#" class="hover:text-gray-400">Blog</a></li> --}}
                         <li class=" inline-block w-[80px] bg-gray-400 text-center py-1 px-2 my-4 rounded hover:bg-gray-600">
                             <form action="/logout" method="post">
@@ -83,6 +85,7 @@
                             <li><a href="{{ route('departments.index') }}"
                                     class="text-white hover:text-gray-400">Departments</a></li>
                             <li><a href="{{ route('roles.index') }}" class="text-white hover:text-gray-400">Role</a></li>
+                            <li><a href="{{ route('permissions.index') }}" class="text-white hover:text-gray-400">Permission</a></li>
                             {{-- <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li> --}}
                         @endauth
                     </ul>

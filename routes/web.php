@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles',RoleController::class);
     Route::get('roles/dataTables/ssd',[RoleController::class,'ssd']);
 
-    // roles
+    // permissions
     Route::resource('permissions',PermissionController::class);
     Route::get('permissions/dataTables/ssd',[PermissionController::class,'ssd']);
 });

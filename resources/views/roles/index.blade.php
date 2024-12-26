@@ -16,13 +16,14 @@
             </div>
 
             <div class="row ">
-                <div class="col-10 offset-1 ">
+                <div class="col-12 ">
                     <div class="card p-4">
-                        <table class="mdl-data-table p-4 " id="roleTable">
+                        <table class="mdl-data-table p-4 table table-hover " id="roleTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Role</th>
+                                    <th>Permission</th>
                                     <th>Create Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -43,11 +44,15 @@
                     ajax: 'roles/dataTables/ssd',
                     columns: [{
                             data: 'id',
-                            id: 'id'
+                            id: 'name'
                         },
                         {
                             data: 'name',
                             name: 'name'
+                        },
+                        {
+                            data: 'permissions',
+                            name: 'permissions'
                         },
                         {
                             data: 'created_at',

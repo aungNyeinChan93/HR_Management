@@ -18,8 +18,22 @@
                             <div class="my-2">
                                 <input type="text" name="name"  value="{{old('name') ??$role->name}}" placeholder="name" class="form-control">
                                 @error('name')
-                                    <span class="text-danger">{{$message}}</span>   
+                                    <span class="text-danger">{{$message}}</span>
                                 @enderror
+                            </div>
+                             <div class="my-2">
+                                <div class="row ps-4 py-2">
+                                    @foreach ($permissions as $permission)
+                                        <div class="col-6 col-md-3">
+                                            <label for="permission_{{$permission->id}}">{{ $permission->name }}</label>
+                                            <input type="checkbox" name="permissions[]" value="{{$permission->name}}"
+                                            @if (in_array($permission->name,$role->permissions->pluck('name')->toArray()))
+                                                checked
+                                            @endif
+                                            id="permission_{{$permission->id}}" >
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="my-2">
                                 <input type="submit" value="Update" class="btn btn-secondary ">

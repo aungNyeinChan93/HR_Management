@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 
@@ -25,7 +26,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        $permissions = Permission::query()->get();
+        return view('roles.create',compact("permissions"));
     }
 
     /**
@@ -33,11 +35,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->permissions);
+
         $fileds = $request->validate([
             'name' => 'required',
         ]);
 
-        Role::create($fileds);
+        $role = Role::create($fileds);
+
+        // $role->givePermissionTo($request->permissions);
+        $role->syncPermissions($request->permissions);
 
         return to_route('roles.index')->with('success', 'Role Create Success!');
     }
@@ -57,7 +64,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role= Role::findOrFail($id);
-        return view('roles.edit',compact('role'));
+        $permissions = Permission::query()->get();
+        return view('roles.edit',compact('role','permissions'));
     }
 
     /**
@@ -70,9 +78,16 @@ class RoleController extends Controller
         ]);
 
         $role= Role::find($id);
+
+        $role->revokePermissionTo($role->permissions);
+        // $role->syncPermissions($request->permissions);
+
         $role->update([
             'name'=>$request->name
         ]);
+
+
+
         return to_route('roles.index')->with('success','Role Update Success!');
     }
 
@@ -88,7 +103,7 @@ class RoleController extends Controller
 
     public function ssd()
     {
-        $roles = Role::query()->latest();
+        $roles = Role::query();
 
         return DataTables::of($roles)
             ->editColumn('created_at', function ($each) {
@@ -98,7 +113,12 @@ class RoleController extends Controller
                 $detail = '<span> <a href=' . route('roles.show', $each->id) . ' class="btn btn-sm btn-info p-1  mx-1"/>Detail</span>';
                 return '<div> '.$detail.' </div>';
             })
-            ->rawColumns(['action']) //for html tags
+            ->addColumn('permissions', function($each) {
+                return $each->permissions->map(function($permission) {
+                    return '<small class=" my-1 badge badge-info p-1 mx-1">' . $permission->name . '</small>';
+                })->implode(' ');
+            })
+            ->rawColumns(['action','permissions']) //for html tags
             ->make(true);
     }
 }
