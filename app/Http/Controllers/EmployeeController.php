@@ -80,9 +80,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
+        $roles = Role::query()->get();
         $employee = User::findOrFail($id);
         $departments = Department::query()->get();
-        return view('employees.edit', compact('employee', 'departments'));
+        return view('employees.edit', compact('employee', 'departments','roles'));
     }
 
     /**
@@ -92,7 +93,7 @@ class EmployeeController extends Controller
     {
         $employee = User::findOrFail($id);
 
-        $data = $request->all();
+        $data = $request->except('roles');
 
         if ($request->hasFile('profile_image')) {
 
@@ -112,6 +113,8 @@ class EmployeeController extends Controller
         $data['password'] = Hash::make($request->password);
 
         $employee->update($data);
+
+        $employee->syncRoles($request->roles); // update roles
 
         return to_route('employees.index')->with('success', 'employee update success!');
 

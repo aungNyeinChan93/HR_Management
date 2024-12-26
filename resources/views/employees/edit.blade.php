@@ -151,6 +151,18 @@
                                     </div>
                                 </div>
 
+                                <div class="mt-2 md-form">
+                                    <select name="roles[]" id="" class="select2 p-2 form-select form-select-sm" multiple>
+                                        @foreach ($roles as $role)
+                                            <option value="{{$role->name}}"
+                                                @if (in_array( $role->name, $employee->roles->pluck('name')->toArray()))
+                                                    selected
+                                                @endif
+                                                >{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <div class="mt-2 md-from">
                                     <textarea name="address" cols="30" rows="3" class="form-control @error('address') is-invalid @enderror"
                                         placeholder="Address">{{ old('address',$employee->address) }}</textarea>

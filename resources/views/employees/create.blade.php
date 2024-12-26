@@ -151,7 +151,7 @@
                                 <div class="mt-2 md-form">
                                     <select name="roles[]" id="" class="select2 p-2 form-select form-select-sm" multiple>
                                         @foreach ($roles as $role)
-                                            <option value="{{$role->name}}">{{ $role->name }}</option>
+                                            <option value="{{$role->name}}" >{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

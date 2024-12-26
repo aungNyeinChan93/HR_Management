@@ -12,8 +12,16 @@
                 </x-header>
 
                 <div>
-                    Total users = ({{count($users)}})
+                    Total users = ({{ count($users) }})
+                    <div>
 
+                        <ul>
+                            <h4>Role </h4>
+                            @foreach (Auth::user()->roles as $role)
+                                <li>{{ $role->name }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
 
                 </div>
             </div>
@@ -23,12 +31,10 @@
     <x-slot:scripts>
         <script>
             swal({
-                    title: "Login Success",
-                    text: " Have a good day!  ",
-                    icon: "success",
-                });
-
-                
+                title: "Login Success",
+                text: " Have a good day!  ",
+                icon: "success",
+            });
         </script>
     </x-slot:scripts>
 
