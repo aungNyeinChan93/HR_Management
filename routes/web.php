@@ -22,7 +22,9 @@ Route::get('welcome',function(){
 })->name('welcome.index');
 
 
+//auth
 Route::middleware('auth')->group(function () {
+
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
