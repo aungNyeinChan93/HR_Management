@@ -9,4 +9,6 @@ class CompanySetting extends Model
 {
     /** @use HasFactory<\Database\Factories\CompanySettingFactory> */
     use HasFactory;
+
+    protected $guarded = [];
 }

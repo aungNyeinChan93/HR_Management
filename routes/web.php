@@ -64,6 +64,10 @@ Route::middleware('auth')->group(function () {
         // companysetting
         Route::get('company',[CompanySettingController::class,'index'])->name('company.index');
         Route::get('company/create',[CompanySettingController::class,'create'])->name('company.create');
+        Route::post('company/create',[CompanySettingController::class,'store'])->name('company.store');
+        Route::get('company/edit/{company}',[CompanySettingController::class,'edit'])->name('company.edit');
+        Route::post('company/update/{company}',[CompanySettingController::class,'update'])->name('company.update');
+        Route::get('company/delete/{company}',[CompanySettingController::class,'destory'])->name('company.destory');
     });
 });
 

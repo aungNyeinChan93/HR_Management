@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('company_phone')->nullable();
             $table->string('company_address')->nullable();
             $table->string('contact_person')->nullable();
-            $table->string('office_start-time')->nullable();
-            $table->string('office_end_time')->nullable();
-            $table->string('break_start-time')->nullable();
-            $table->string('break_end-time')->nullable();
+            $table->time('office_start_time')->nullable();
+            $table->time('office_end_time')->nullable();
+            $table->time('break_start_time')->nullable();
+            $table->time('break_end_time')->nullable();
             $table->timestamps();
         });
     }
