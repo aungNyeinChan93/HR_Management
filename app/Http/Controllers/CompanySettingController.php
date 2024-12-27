@@ -8,19 +8,31 @@ use Illuminate\Http\Request;
 
 class CompanySettingController extends Controller
 {
-    //index
+    /**
+     * Summary of index
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index(){
         $company = CompanySetting::query()->first();
         return view('company.index',compact('company'));
     }
 
-    // create
+
+    /**
+     * Summary of create
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create(){
         return view('company.create');
 
     }
 
-    //store
+
+    /**
+     * Summary of store
+     * @param \App\Http\Requests\CreateCompanyRequest $createCompanyRequest
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateCompanyRequest $createCompanyRequest){
         $data = $createCompanyRequest->all();
         if(auth()->user()->hasRole('CEO')){
@@ -33,24 +45,40 @@ class CompanySettingController extends Controller
         return to_route('company.index')->with('success','comapny create success!');
     }
 
-    // edit
+
+    /**
+     * Summary of edit
+     * @param mixed $id
+     * @return \Illuminate\Contracts\View\View
+     */
     public function edit($id){
         $company = CompanySetting::findOrFail($id);
         return view('company.edit',compact('company'));
     }
 
-    // update
+
+    /**
+     * Summary of update
+     * @param \App\Http\Requests\CreateCompanyRequest $createCompanyRequest
+     * @param mixed $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(CreateCompanyRequest $createCompanyRequest ,$id ){
         $company = CompanySetting::findOrFail($id);
         if(auth()->user()->hasRole('CEO')){
             $company->update($createCompanyRequest->all());
         }else{
-            return back();
+            abort('403',"only CEO can update!");
         }
         return to_route('company.index')->with('success','update');
     }
 
-    // destory
+
+    /**
+     * Summary of destory
+     * @param mixed $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destory($id){
 
         $company = CompanySetting::findOrFail($id);
@@ -59,6 +87,6 @@ class CompanySettingController extends Controller
         }else{
             return back();
         }
-        return to_route('company.index');
+        return to_route('company.index')->with('success',$company->company_name . 'delete success');
     }
 }

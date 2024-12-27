@@ -102,4 +102,10 @@
             </div>
         </div>
     </div>
+
+    <x-slot:scripts>
+        <script>
+
+        </script>
+    </x-slot:scripts>
 </x-master>

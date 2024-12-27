@@ -51,8 +51,10 @@
                             <a href="{{ route('home') }}" class="btn btn-sm btn-secondary me-1">Back</a>
                             <a href="{{ route('company.edit', $company->id) }}"
                                 class="btn btn-sm btn-primary me-1">Edit</a>
-                            <a href="{{ route('company.destory', $company->id) }}"
-                                class="btn btn-sm btn-danger me-1">Delete</a>
+                            @role('CEO')
+                                <a href="{{ route('company.destory', $company->id) }}"
+                                    class="btn btn-sm btn-danger me-1">Delete</a>
+                            @endrole
                         </div>
                     </div>
                 @else
@@ -65,4 +67,12 @@
 
 
     </div>
+
+    <x-slot:scripts>
+        <script>
+            @if (session('success'))
+                swal("Good job!", "Success!!", "success");
+            @endif
+        </script>
+    </x-slot:scripts>
 </x-master>

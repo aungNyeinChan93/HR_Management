@@ -51,7 +51,7 @@
                                 href="{{ route('home') }}" class="hover:text-gray-400 ">Home</a></li>
                         <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a
                                 href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
-                        @role(['HR', 'CEO'])
+                        @role(['HR','CEO'])
                             <li class="py-2 flex space-x-3 items-center"><i class="fa-solid fa-users text-red-500"></i><a
                                     href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
                             <li class="py-2 flex items-center space-x-4"><i class="fa-brands fa-codepen text-red-500"></i><a

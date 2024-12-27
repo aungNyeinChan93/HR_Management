@@ -45,6 +45,17 @@
                     </div>
                 </div>
 
+                @can('promotion')
+                <div class="row mt-4">
+                    <div class="col-3">
+                        <div class="card p-1 bg-danger text-white">
+                            <a class="btn btn-sm btn-secondary" href="{{route('promotion')}}"> Promotion </a>
+                        </div>
+                    </div>
+                </div>
+
+                @endcan
+
                 </div>
             </div>
         </div>

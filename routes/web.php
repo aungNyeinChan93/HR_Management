@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get("users/{user}",[UserController::class,'show'])->name('users.show');
 
     //middleware HR
-    Route::middleware(['role:HR'])->group(function(){
+    Route::middleware('role:HR|CEO')->group(function(){
 
         // users
         Route::delete("users/delete/{user}",[UserController::class,'destory'])->name('users.destory');

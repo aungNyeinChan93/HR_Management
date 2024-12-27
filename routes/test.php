@@ -60,5 +60,15 @@ Route::group(['prefix' => 'test'], function () {
     Route::get('permissions/SSS/middleware', function () {
         return 'welcome to SSS service! {middleware}';
     })->middleware(['permission:SSS']);
+
+
+    Route::get('permissions/promotion',function(){
+        if(auth()->user()->can('promotion')){
+            dump('promotion frature success');
+        }else{
+            abort('403','only sale team can manage');
+        }
+        dd('promotion feature!');
+    })->name('promotion')->middleware('can:promotion');
 });
 
