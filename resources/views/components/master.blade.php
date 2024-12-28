@@ -34,6 +34,7 @@
 
 
 
+
     <title>{{ $title ?? null }}</title>
 
 </head>
@@ -51,7 +52,7 @@
                                 href="{{ route('home') }}" class="hover:text-gray-400 ">Home</a></li>
                         <li class="py-2 flex space-x-5 items-center"><i class="fa-solid fa-user text-red-500"></i><a
                                 href="{{ route('users.index') }}" class="hover:text-gray-400">Users</a></li>
-                        @role(['HR','CEO'])
+                        @role(['HR', 'CEO'])
                             <li class="py-2 flex space-x-3 items-center"><i class="fa-solid fa-users text-red-500"></i><a
                                     href="{{ route('employees.index') }}" class="hover:text-gray-400">Employees</a></li>
                             <li class="py-2 flex items-center space-x-4"><i class="fa-brands fa-codepen text-red-500"></i><a
@@ -95,8 +96,8 @@
                                 <li><a href="{{ route('roles.index') }}" class="text-white hover:text-gray-400">Role</a></li>
                                 <li><a href="{{ route('permissions.index') }}"
                                         class="text-white hover:text-gray-400">Permission</a></li>
-                                <li><a href="{{ route('company.index') }}"
-                                        class="text-white hover:text-gray-400">Company</a></li>
+                                <li><a href="{{ route('company.index') }}" class="text-white hover:text-gray-400">Company</a>
+                                </li>
                             @endrole
                             {{-- <li><a href="/posts" class="text-white hover:text-gray-400">Blog</a></li> --}}
                         @endauth
@@ -136,7 +137,7 @@
             </main>
 
             <footer class="bg-gray-800 text-white p-4 text-center">
-                <p>&copy; 2021 Company Name</p>
+                <p>&copy; 2021 {{ config('app.company.name') }} </p>
             </footer>
         </div>
 </body>
@@ -167,13 +168,12 @@
 {{-- select2  --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+{{-- laragear --}}
+<script src="https://cdn.jsdelivr.net/npm/@laragear/webpass@2/dist/webpass.js" defer></script>
+
+
+
 <script>
-    $(document).ready(function() {
-        $('.select2').select2({
-
-        });
-    });
-
 
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         var sidebar = document.getElementById('sidebar');

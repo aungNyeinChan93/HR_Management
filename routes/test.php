@@ -1,8 +1,10 @@
 <?php
 
 
+use App\Models\Department;
 use App\Models\User;
 use App\Jobs\TestJob;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -70,5 +72,18 @@ Route::group(['prefix' => 'test'], function () {
         }
         dd('promotion feature!');
     })->name('promotion')->middleware('can:promotion');
+
+    //api
+    Route::get('databases',function(){
+        $users =DB::table('users')->select('name','email','password')->get();
+        return view('test.all',compact('users'));
+    });
+
+    // fetch and render by blade
+    Route::get("departments",function(){
+        $departments = Department::query()->get();
+        return view('test.department',compact('departments'))->render();
+    });
 });
+
 

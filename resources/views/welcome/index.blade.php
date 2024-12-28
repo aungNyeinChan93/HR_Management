@@ -40,6 +40,7 @@
 
                         @auth
                             <div class="mt-8 flex flex-wrap justify-center gap-4">
+
                                 <form action="/logout" method="POST">
                                     @csrf
                                     <button type="submit"
@@ -47,6 +48,15 @@
                                         href="/logout">
                                         Logout
                                     </button>
+                                </form>
+
+
+                                <form action="{{route('webauthn.register')}}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                                    href="/login">
+                                    Web Authn Register
+                                </button>
                                 </form>
                             </div>
                         @endauth

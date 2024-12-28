@@ -14,3 +14,12 @@ INPUT:not(:autofill), SELECT:not(:autofill), TEXTAREA:not(:autofill){
     border-radius: 10px;
     margin: 5px;
 }
+
+
+/* -----web authn------- */
+.finger i {
+    color: rgba(183, 25, 223, 0.651);
+    font-size: 4rem;
+    box-shadow: none;
+    padding: 10px;
+}

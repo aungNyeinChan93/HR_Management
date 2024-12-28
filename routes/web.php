@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\CompanySettingController;
-use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\EmployeeController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\CompanySettingController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
 
 require __DIR__ . '/auth.php';
 require_once __DIR__ . '/test.php';
@@ -16,10 +18,16 @@ require_once __DIR__ . '/test.php';
 
 // welcome page
 Route::redirect('/',"welcome",302);
-
 Route::get('welcome',function(){
     return view('welcome.index');
 })->name('welcome.index');
+
+
+// WebAuthn Routes (laragear)
+WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
+
+
+
 
 
 //auth

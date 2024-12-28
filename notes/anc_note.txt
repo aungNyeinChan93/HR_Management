@@ -15,4 +15,5 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 
 # select2 => https://select2.org/getting-started/installation
 
-    
+# larapass => https://github.com/DarkGhostHunter/Larapass (superseded)
+# laragear => https://github.com/Laragear/WebAuthn
