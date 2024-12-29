@@ -17,10 +17,21 @@
             @endforeach
         </ul>
     </div>
+    <div class="p-5">
+        <h2>Login</h2>
+        <form method="test" action="{{route('testForm')}}">
+            <input type="text" name="name" placeholder="name">
+            <input type="submit" value="submit" >
+        </form>
+    </div>
+    <hr>
 
     <button onclick="departments()">fetch with ajax render by blade (departments) </button>
+    <button disabled onclick="users()" >fetch with ajax render by blade (users) </button>
+    <button disabled onclick="roles()" >fetch with ajax render by blade (roles) </button>
+    <button onclick="products()">fetch with ajax render by blade (products) </button>
 
-    <span class="departments" ></span>
+    <span class="departments"></span>
 </body>
 
 
@@ -29,27 +40,57 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 <script>
+    $.ajax({
+        url: 'http://localhost:8000/api/users',
+        type: 'GET',
+        success: function(res) {
+            console.log(res.users[0].name);
+        }
+    });
+
+    function departments() {
         $.ajax({
-            url: 'http://localhost:8000/api/users',
+            url: "http://localhost:8000/test/departments",
             type: 'GET',
             success: function(res) {
-                console.log(res.users[0].name);
+                $('.departments').html(res);
             }
         });
+    }
 
-        function departments(){
-            $.ajax({
-                url:"http://localhost:8000/test/departments",
-                type:'GET',
-                success:function(res){
-                    $('.departments').html(res);
-                }
-            });
-        }
+    function users() {
+        $.ajax({
+            url: "http://localhost:8000/test/users",
+            type: 'GET',
+            success: function(res) {
+                $('.departments').html(res);
+                // console.log(res);
+            }
+        })
+    }
+
+    function roles() {
+        $.ajax({
+            url: "http://localhost:8000/test/roles",
+            type: 'GET',
+            success: function(res) {
+                // $('.departments').html(res);
+                console.log(res);
+            }
+        })
+    }
 
 
-
-
+    function products() {
+        $.ajax({
+            url: "http://localhost:8000/test/products",
+            type: 'GET',
+            success: function(res) {
+                $('.departments').html(res);
+                // console.log(res);
+            }
+        })
+    }
 </script>
 
 </html>

@@ -27,9 +27,6 @@ Route::get('welcome',function(){
 WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
 
 
-
-
-
 //auth
 Route::middleware('auth')->group(function () {
 
