@@ -34,7 +34,8 @@ class StoreEmployeeRequest extends FormRequest
             'date_of_join'=>['required'],
             'gender'=>['required'],
             'department_id'=>['required'],
-            'password'=>['required',Password::default()]
+            'password'=>['required',Password::default()],
+            'pin_code'=>'nullable|min:6|max:6|unique:users,pin_code',
 
         ];
     }

@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css','resources/css/pin_code.css', 'resources/js/app.js','resources/js/pin_code.js'])
     @include('sweetalert::alert')
 
     <link rel="stylesheet" href="">
@@ -175,6 +176,19 @@
 
 <script>
 
+    $(function($) {
+        let token = document.head.querySelector('meta[name="csrf_token"]');
+        if (token) {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": token.content
+                }
+            });
+        } else {
+            // console.error('token not found!');
+        }
+    });
+
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         var sidebar = document.getElementById('sidebar');
         if (sidebar.style.display === 'none') {
@@ -183,9 +197,11 @@
             sidebar.style.display = 'none';
         }
     });
+
 </script>
 
 {{-- js section for x --}}
 {{ $scripts ?? null }}
 
 </html>
+

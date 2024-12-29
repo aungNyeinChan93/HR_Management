@@ -118,7 +118,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="my-3 md-form col-6">
+                                    <div class="my-3 md-form col-4">
                                         <select name="gender"
                                             class="form-control @error('gender') is-invalid @enderror">
                                             <option value="">Choose Gender</option>
@@ -132,7 +132,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="my-3 md-form col-6">
+                                    <div class="my-3 md-form col-4">
                                         <select name="department_id"
                                             class="form-control @error('department_id') is-invalid @enderror">
                                             <option value="">Choose department</option>
@@ -143,6 +143,13 @@
                                             @endforeach
                                         </select>
                                         @error('department_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="my-3 md-form col-4">
+                                        <input type="number" name="pin_code" placeholder="Pin Code" class="formcontrol">
+                                        @error('pin_code')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

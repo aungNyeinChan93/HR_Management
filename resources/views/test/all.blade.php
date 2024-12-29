@@ -30,6 +30,7 @@
     <button disabled onclick="users()" >fetch with ajax render by blade (users) </button>
     <button disabled onclick="roles()" >fetch with ajax render by blade (roles) </button>
     <button onclick="products()">fetch with ajax render by blade (products) </button>
+    <button onclick="allUsers(url)">fetch with ajax render by blade (allUsers) </button>
 
     <span class="departments"></span>
 </body>
@@ -91,6 +92,14 @@
             }
         })
     }
+
+
+    const url = "http://localhost:8000/api/users"
+    let allUsers = async(url )=>{
+        let res = await fetch(url);
+        let data = await res.json();
+        console.log(data.users);
+    };
 </script>
 
 </html>

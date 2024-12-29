@@ -17,3 +17,9 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 
 # larapass => https://github.com/DarkGhostHunter/Larapass (superseded)
 # laragear => https://github.com/Laragear/WebAuthn
+
+# bootstrao pincode =>https://github.com/fkranenburg/bootstrap-pincode-input?tab=readme-ov-file
+
+# QRcode ~ simplesoftwareIO  =>https://github.com/SimpleSoftwareIO/simple-qrcode
+composer require simplesoftwareio/simple-qrcode
+https://medium.com/@buwembojulius3/how-to-create-qr-codes-in-laravel-11-9fdd7d62f013

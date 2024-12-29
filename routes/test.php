@@ -106,11 +106,11 @@ Route::group(['prefix' => 'test'], function () {
     });
 
     // external api
-    Route::get("products",function(){
-        $res = Http::timeout(60)->get('https://fakestoreapi.com/products');
-        $products = $res->json();
-        return view('test.products',compact('products'))->render();
-    });
+    // Route::get("products",function(){
+    //     $res = Http::timeout(60)->get('https://fakestoreapi.com/products');
+    //     $products = $res->json();
+    //     return view('test.products',compact('products'))->render();
+    // });
 
     // testForm
     Route::get('form',function(){

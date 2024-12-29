@@ -4,13 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\CompanySettingController;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\CheckInCheckOutController;
 use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 require __DIR__ . '/auth.php';
 require_once __DIR__ . '/test.php';
@@ -26,6 +28,12 @@ Route::get('welcome',function(){
 // WebAuthn Routes (laragear)
 WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
 
+// QR code
+Route::get('/generate-qrcode', [QrCodeController::class, 'generate']);
+
+// checkin|checkOut
+Route::get("checkin-checkout",[CheckInCheckOutController::class,'index'])->name('checkin.index');
+Route::post("checkin",[CheckInCheckOutController::class,'checkin'])->name('checkin');
 
 //auth
 Route::middleware('auth')->group(function () {

@@ -18,6 +18,7 @@
         "vite": "^6.0"
     },
     "dependencies": {
+        "bootstrap-pincode-input": "^3.0.1",
         "sweetalert": "^2.1.2"
     }
 }
