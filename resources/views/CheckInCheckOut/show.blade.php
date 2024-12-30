@@ -32,8 +32,10 @@
                         </div>
                         <div class="card-footer">
                             <a href="{{route('checkin.list')}}" class="btn btn-sm btn-primary">back</a>
+                            @role(['HR','CEO'])
                             <a href="{{route('checkin.edit',$checkin_checkout->id)}}" class="btn btn-sm btn-warning">edit</a>
-                            <button form='delete-attendance' class="btn btn-sm btn-danger">delete</button>
+                            <button form='delete-attendance' class="btn btn-sm btn-danger">delete</button>  
+                            @endrole
                         </div>
                     </div>
 

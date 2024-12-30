@@ -38,7 +38,7 @@ Route::get("checkin-checkout/create",[CheckInCheckOutController::class,'create']
 Route::post("checkin-checkout/create",[CheckInCheckOutController::class,'store'])->name('checkin.store');
 Route::get("checkin-checkout/list",[CheckInCheckOutController::class,'list'])->name('checkin.list');
 Route::get("checkin-checkout/{id}",[CheckInCheckOutController::class,'show'])->name('checkin.show');
-Route::get("checkin-checkout/{id}/edit",[CheckInCheckOutController::class,'edit'])->name('checkin.edit');
+Route::get("checkin-checkout/{id}/edit",[CheckInCheckOutController::class,'edit'])->name('checkin.edit')->middleware('role:HR');
 Route::put("checkin-checkout/{id}/update",[CheckInCheckOutController::class,'update'])->name('checkin.update');
 Route::delete("checkin-checkout/{id}/delete",[CheckInCheckOutController::class,'destory'])->name('checkin.destory');
 

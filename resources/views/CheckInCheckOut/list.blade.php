@@ -42,12 +42,14 @@
 
             </div>
 
-            <div class="row px-5">
-                <div class="col-12">
-                    <a href="{{ route('checkin.create') }}" class="btn btn-secondary text-primary shadow-sm mb-3">Create
-                        ttendance</a>
+            @can('create_Attendance')
+                <div class="row px-5">
+                    <div class="col-12">
+                        <a href="{{ route('checkin.create') }}" class="btn btn-secondary text-primary shadow-sm mb-3">Create
+                            Attendance</a>
+                    </div>
                 </div>
-            </div>
+            @endcan
 
 
 

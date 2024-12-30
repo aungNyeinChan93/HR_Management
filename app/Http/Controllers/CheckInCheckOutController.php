@@ -42,7 +42,7 @@ class CheckInCheckOutController extends Controller
         //     return back()->with('fail', 'you have already checkIn today');
         // }
 
-        $checkInCheckOut_data = CheckInCheckOut::firstOrCreate([
+        $checkInCheckOut_data = CheckInCheckOut::firstOrCreate(attributes: [
             "user_id" => $user->id,
             "date" => Carbon::now()->format("Y-m-d"),
         ]);
@@ -84,6 +84,9 @@ class CheckInCheckOutController extends Controller
     // create
     public function create()
     {
+        if(!auth()->user()->can('create_Attendance')){
+            abort(403,'HR Only !');
+        }
         $employees = User::query()->get();
         return view('CheckInCheckOut.create', compact('employees'));
     }
@@ -139,6 +142,9 @@ class CheckInCheckOutController extends Controller
     // destory
     public function destory($id)
     {
+        if(!auth()->user()->hasRole("HR")){
+            abort(403,'HR only');
+        }
         $checkin_checkout = CheckInCheckOut::findOrFail($id);
         $checkin_checkout->delete();
         return to_route('checkin.list')->with('delete', 'Attendavce delete success!');
