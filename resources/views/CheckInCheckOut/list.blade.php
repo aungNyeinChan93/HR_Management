@@ -7,12 +7,58 @@
             CheckIn CheckOut List
         </x-header>
         <div class="wrapper">
+
+            <div class="row px-5">
+                @session('success')
+                    <div class="px-4 py-3 my-2 text-sm text-green-700 bg-green-100 rounded-lg flex justify-between items-center"
+                        role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="text-green-700" onclick="this.parentElement.style.display='none';">
+                            &times;
+                        </button>
+                    </div>
+                @endsession
+
+                @session('update')
+                    <div class="px-4 py-3 my-2 text-sm text-green-700 bg-green-100 rounded-lg flex justify-between items-center"
+                        role="alert">
+                        {{ session('update') }}
+                        <button type="button" class="text-green-700" onclick="this.parentElement.style.display='none';">
+                            &times;
+                        </button>
+                    </div>
+                @endsession
+
+                @session('delete')
+                    <div class="px-4 py-3 my-2 text-sm text-green-700 bg-green-100 rounded-lg flex justify-between items-center"
+                        role="alert">
+                        {{ session('delete') }}
+                        <button type="button" class="text-green-700" onclick="this.parentElement.style.display='none';">
+                            &times;
+                        </button>
+                    </div>
+                @endsession
+
+
+            </div>
+
+            <div class="row px-5">
+                <div class="col-12">
+                    <a href="{{ route('checkin.create') }}" class="btn btn-secondary text-primary shadow-sm mb-3">Create
+                        ttendance</a>
+                </div>
+            </div>
+
+
+
             <div class="row">
                 <div class="col-12">
                     <div class="me-4 p-2 float-end">
-                        <a href="{{route('home')}}" class="btn btn-sm btn-info">Back</a>
+                        <a href="{{ route('home') }}" class="btn btn-sm btn-info">Back</a>
                     </div>
                 </div>
+
+
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
@@ -38,7 +84,8 @@
                                             <td>{{ $item->checkin_time }}</td>
                                             <td>{{ $item->checkout_time }}</td>
                                             <td>
-                                                <a href="" class="btn btn-sm btn-primary">Detail</a>
+                                                <a href="{{ route('checkin.show', $item->id) }}"
+                                                    class="btn btn-sm btn-primary">Detail</a>
                                             </td>
                                         </tr>
                                     @endforeach

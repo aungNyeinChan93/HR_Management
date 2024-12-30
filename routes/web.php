@@ -34,7 +34,13 @@ Route::get('/generate-qrcode', [QrCodeController::class, 'generate']);
 // checkin|checkOut
 Route::get("checkin-checkout",[CheckInCheckOutController::class,'index'])->name('checkin.index');
 Route::post("checkin-checkout",[CheckInCheckOutController::class,'checkin_checkout'])->name('checkin_checkout');
+Route::get("checkin-checkout/create",[CheckInCheckOutController::class,'create'])->name('checkin.create');
+Route::post("checkin-checkout/create",[CheckInCheckOutController::class,'store'])->name('checkin.store');
 Route::get("checkin-checkout/list",[CheckInCheckOutController::class,'list'])->name('checkin.list');
+Route::get("checkin-checkout/{id}",[CheckInCheckOutController::class,'show'])->name('checkin.show');
+Route::get("checkin-checkout/{id}/edit",[CheckInCheckOutController::class,'edit'])->name('checkin.edit');
+Route::put("checkin-checkout/{id}/update",[CheckInCheckOutController::class,'update'])->name('checkin.update');
+Route::delete("checkin-checkout/{id}/delete",[CheckInCheckOutController::class,'destory'])->name('checkin.destory');
 
 
 //auth

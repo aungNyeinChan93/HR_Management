@@ -70,10 +70,78 @@ class CheckInCheckOutController extends Controller
     }
 
 
-    // list
-    public function list(){
+    /**
+     * Summary of list
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function list()
+    {
         $checkin_checkout_data = CheckInCheckOut::query()->latest()->paginate(10);
-        return view('CheckInCheckOut.list',compact('checkin_checkout_data'));
+        return view('CheckInCheckOut.list', compact('checkin_checkout_data'));
+    }
+
+
+    // create
+    public function create()
+    {
+        $employees = User::query()->get();
+        return view('CheckInCheckOut.create', compact('employees'));
+    }
+
+    // store
+    public function store(Request $request)
+    {
+        $fields = $request->validate([
+            'user_id' => 'required',
+            'date' => 'required',
+            'checkin_time' => 'nullable',
+            'checkout_time' => 'nullable',
+        ]);
+
+        CheckInCheckOut::create($fields);
+
+        return to_route('checkin.list')->with('success', 'Attendance create success!');
+    }
+
+
+    // show
+    public function show($id)
+    {
+        $checkin_checkout = CheckInCheckOut::findOrFail($id);
+        return view('CheckInCheckOut.show', data: compact(var_name: 'checkin_checkout'));
+    }
+
+    // edit
+    public function edit($id)
+    {
+        $employees = User::query()->get();
+        $checkin_checkout = CheckInCheckOut::findOrFail($id);
+        return view('CheckInCheckOut.edit', compact('checkin_checkout', 'employees'));
+    }
+
+    // update
+    public function update(Request $request, $id)
+    {
+        $fields = $request->validate([
+            'user_id' => 'required',
+            'date' => 'required',
+            'checkin_time' => 'nullable',
+            'checkout_time' => 'nullable',
+        ]);
+        $checkin_checkout = CheckInCheckOut::findOrFail($id);
+
+        $checkin_checkout->update($fields);
+
+        return to_route('checkin.list')->with('update', 'Attendance update success!');
+
+    }
+
+    // destory
+    public function destory($id)
+    {
+        $checkin_checkout = CheckInCheckOut::findOrFail($id);
+        $checkin_checkout->delete();
+        return to_route('checkin.list')->with('delete', 'Attendavce delete success!');
     }
 
 
