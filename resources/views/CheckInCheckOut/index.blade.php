@@ -90,6 +90,9 @@
                     hidedigits: false,
                     complete: function(value, e, errorElement) {
                         console.log("code entered: " + value);
+
+                        // $('.pincode-input-container .pincode-input-text').val('');
+                        // $('pincode-input-text').first().select().focus();    
                         // $.ajax({
                         //     url: 'http://localhost:8000/checkin',
                         //     type: "POST",
