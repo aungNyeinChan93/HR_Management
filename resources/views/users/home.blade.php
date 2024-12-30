@@ -75,7 +75,11 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <div class="card p-3">
+                                    <a href="{{route('checkin.list')}}" class="text-danger"><i class="fa-solid fa-users me-4"></i> Check in & Check out Lists</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

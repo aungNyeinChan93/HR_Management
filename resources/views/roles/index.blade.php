@@ -73,6 +73,7 @@
                     icon: "success",
                 });
             @endif
+
         </script>
     </x-slot:scripts>
 </x-master>

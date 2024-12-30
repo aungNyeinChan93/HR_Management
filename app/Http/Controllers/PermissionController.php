@@ -94,6 +94,9 @@ class PermissionController extends Controller
             ->editColumn('created_at', function ($each) {
                 return $each->created_at->format('j-F-Y');
             })
+            ->editColumn("updated_at",function($each){
+                return $each->updated_at ? $each->updated_at->toDateTimeString(): "";
+            })
             ->addColumn('action', function ($each) {
                 $detail = '<span> <a href=' . route('permissions.show', $each->id) . ' class="btn btn-sm btn-info p-1  mx-1"/>Detail</span>';
                 return '<div> '.$detail.' </div>';

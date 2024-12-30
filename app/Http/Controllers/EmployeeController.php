@@ -148,7 +148,7 @@ class EmployeeController extends Controller
             ->addColumn('action', function ($each) {
                 $edit = "<a href=" . route('employees.edit', $each->id) . " class='btn btn-sm btn-warning mx-1'>Edit</a>";
                 $info = "<a href=" . route('employees.show', $each->id) . " class='btn btn-sm btn-info mx-1'>Detail</a>";
-                $delete = "<a href=" . route('employees.show', $each->id) . " class='btn btn-sm btn-info mx-1'>Detail</a>";
+                // $delete = "<a href=" . route('employees.destory', $each->id) . " class='btn btn-sm btn-info mx-1'>Delete    </a>";
                 return '<div class="d-flex ">' . $info . $edit .     '</div>';
             })
             ->addColumn("profile_image",function($each){

@@ -35,7 +35,8 @@
                         <div class="px-4 py-3 my-2 text-sm text-yellow-700 bg-yellow-100 rounded-lg flex justify-between items-center"
                             role="alert">
                             {{ session('notFound') }}
-                            <button type="button" class="text-yellow-700" onclick="this.parentElement.style.display='none';">
+                            <button type="button" class="text-yellow-700"
+                                onclick="this.parentElement.style.display='none';">
                                 &times;
                             </button>
                         </div>
@@ -59,14 +60,14 @@
                             <hr>
 
                             <div class="mt-4 t6ext-center">
-                                <form action="{{ route('checkin') }}" method="post">
+                                <form action="{{ route('checkin_checkout') }}" method="post">
                                     @csrf
                                     <label for="pincode-input1" class="ms-3 form-label ">PIN</label>
                                     <input type="text" name="pin_code" id="pincode-input1">
                                     @error('pin_code')
                                         <small class="alert text-sm">{{ $message }}</small>
                                     @enderror
-                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                    <button type="submit" class="w-100 btn btn-primary mt-3">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -92,7 +93,7 @@
                         console.log("code entered: " + value);
 
                         // $('.pincode-input-container .pincode-input-text').val('');
-                        // $('pincode-input-text').first().select().focus();    
+                        // $('pincode-input-text').first().select().focus();
                         // $.ajax({
                         //     url: 'http://localhost:8000/checkin',
                         //     type: "POST",
@@ -106,6 +107,9 @@
                         // $(errorElement).html("I'm sorry, but the code not correct");
                     }
                 });
+
+                $('.pincode-input-text').first().select().focus();
+
             });
         </script>
     </x-slot:scripts>

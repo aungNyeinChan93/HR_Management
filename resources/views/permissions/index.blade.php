@@ -18,12 +18,13 @@
             <div class="row ">
                 <div class="col-10 offset-1 ">
                     <div class="card p-4">
-                        <table class="mdl-data-table p-4 " id="permissionTable">
+                        <table class="mdl-data-table tabel table-hover p-4 text-center " id="permissionTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Permission</th>
-                                    <th>Create Date</th>
+                                    <th>Created Date</th>
+                                    <th>Updated Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -52,6 +53,10 @@
                         {
                             data: 'created_at',
                             name: 'created_at'
+                        },
+                        {
+                            data: 'updated_at',
+                            name: 'updated_at'
                         },
                         {
                             data: 'action',

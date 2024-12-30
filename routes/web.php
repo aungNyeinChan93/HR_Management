@@ -33,7 +33,9 @@ Route::get('/generate-qrcode', [QrCodeController::class, 'generate']);
 
 // checkin|checkOut
 Route::get("checkin-checkout",[CheckInCheckOutController::class,'index'])->name('checkin.index');
-Route::post("checkin",[CheckInCheckOutController::class,'checkin'])->name('checkin');
+Route::post("checkin-checkout",[CheckInCheckOutController::class,'checkin_checkout'])->name('checkin_checkout');
+Route::get("checkin-checkout/list",[CheckInCheckOutController::class,'list'])->name('checkin.list');
+
 
 //auth
 Route::middleware('auth')->group(function () {
