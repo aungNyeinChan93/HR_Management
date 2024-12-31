@@ -102,27 +102,26 @@
                 function(result) {
                     console.log(result);
 
+                    const qr_data = async (result) => {
+                        const res = await fetch('http://localhost:8000/attendance_scan', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            body: JSON.stringify({
+                                key: result
+                            })
+                        });
+                    }
+                    qr_data(result);
+
                     if (result) {
-
-                        const qr_data = async (result) => {
-                            const res = await fetch('http://localhost:8000/attendance_scan', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                },
-                                body: JSON.stringify({
-                                    key: result
-                                })
-                            });
-                        }
-                        qr_data(result);
-
                         qrScanner.stop();
                         const modal = bootstrap.Modal.getInstance(myModalEl.closest('.modal'));
                         modal.hide();
 
-                        window.location.href = '/home';
+                        window.location.href = '/checkin-checkout/list';
                     }
 
                 }, {
@@ -131,14 +130,13 @@
                 },
             );
 
-
-
             qr_btn.addEventListener('click', function() {
                 qrScanner.start();
             })
             close_btn.addEventListener('click', function() {
                 qrScanner.stop();
             })
+
         </script>
     </x-slot:scripts>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use App\Models\CompanySetting;
 use App\Models\CheckInCheckOut;
@@ -21,7 +22,7 @@ class CheckInCheckOutController extends Controller
      */
     public function index()
     {
-        $company_name = CompanySetting::first()->company_name.Carbon::now()->format("Y-m-d") ;
+        $company_name = CompanySetting::first()->company_name;
         $hash_value = Hash::make($company_name);
         $qrCode = QrCode::size(300)->generate($hash_value);
         return view('CheckInCheckOut.index', compact('qrCode'));
@@ -88,8 +89,8 @@ class CheckInCheckOutController extends Controller
     // create
     public function create()
     {
-        if(!auth()->user()->can('create_Attendance')){
-            abort(403,'HR Only !');
+        if (!auth()->user()->can('create_Attendance')) {
+            abort(403, 'HR Only !');
         }
         $employees = User::query()->get();
         return view('CheckInCheckOut.create', compact('employees'));
@@ -146,12 +147,22 @@ class CheckInCheckOutController extends Controller
     // destory
     public function destory($id)
     {
-        if(!auth()->user()->hasRole("HR")){
-            abort(403,'HR only');
+        if (!auth()->user()->hasRole("HR")) {
+            abort(403, 'HR only');
         }
         $checkin_checkout = CheckInCheckOut::findOrFail($id);
         $checkin_checkout->delete();
         return to_route('checkin.list')->with('delete', 'Attendavce delete success!');
+    }
+
+
+    // overview
+    public function overview(){
+        $periods = CarbonPeriod::create("2024-12-1",'2024-12-31');
+        $employees = User::query()->orderBy("id",'asc')->get();
+        $attendances = CheckInCheckOut::whereMonth("date",'12')->whereYear('date','2024')->get();
+        $companySetting = CompanySetting::first();
+        return view('CheckInCheckOut.overview',compact('periods','employees','attendances','companySetting'));
     }
 
 

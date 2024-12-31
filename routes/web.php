@@ -35,6 +35,7 @@ Route::get('/generate-qrcode', [QrCodeController::class, 'generate']);
 // checkin|checkOut
 Route::get("checkin-checkout",[CheckInCheckOutController::class,'index'])->name('checkin.index');
 Route::post("checkin-checkout",[CheckInCheckOutController::class,'checkin_checkout'])->name('checkin_checkout');
+Route::get("checkin-checkout/overview",[CheckInCheckOutController::class,'overview'])->name('checkin.overview');
 Route::get("checkin-checkout/create",[CheckInCheckOutController::class,'create'])->name('checkin.create');
 Route::post("checkin-checkout/create",[CheckInCheckOutController::class,'store'])->name('checkin.store');
 Route::get("checkin-checkout/list",[CheckInCheckOutController::class,'list'])->name('checkin.list');
@@ -44,12 +45,14 @@ Route::put("checkin-checkout/{id}/update",[CheckInCheckOutController::class,'upd
 Route::delete("checkin-checkout/{id}/delete",[CheckInCheckOutController::class,'destory'])->name('checkin.destory');
 
 
-// Attendance Scan
-Route::get("attendance_scan",[AttendanceScanController::class,'scan'])->name('attendance.scan')->middleware("auth");
-Route::post("attendance_scan",[AttendanceScanController::class,'store'])->name('attendance.store')->middleware("auth");
 
 //auth
 Route::middleware('auth')->group(function () {
+
+
+    // Attendance Scan
+    Route::get("attendance_scan",[AttendanceScanController::class,'scan'])->name('attendance.scan');
+    Route::post("attendance_scan",[AttendanceScanController::class,'store'])->name('attendance.store');
 
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

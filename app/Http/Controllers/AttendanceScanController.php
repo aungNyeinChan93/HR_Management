@@ -20,14 +20,14 @@ class AttendanceScanController extends Controller
     // store
     public function store(Request $request)
     {
-        $company_name = CompanySetting::first()->company_name.Carbon::now()->format("Y-m-d");
+        $company_name = CompanySetting::first()->company_name;
         $scan_value = $request->key['data'];
         $message = '';
 
         if (Hash::check($company_name, $scan_value)) {
 
             if (!Auth::user()) {
-                return to_route('attendance.scan')->with('notFound', 'user not found !');
+                return to_route('')->with('notFound', 'user not found !');
             }
 
             $checkInCheckOut_data = CheckInCheckOut::firstOrCreate([
@@ -48,7 +48,7 @@ class AttendanceScanController extends Controller
                     $message = "you have been check out $checkInCheckOut_data->checkout_time !";
                 } else {
                     $message = "";
-                    return to_route('attendance.scan')->with('fail', 'You have been already chekin-checkout today!');
+                    return to_route('')->with('fail', 'You have been already chekin-checkout today!');
                 }
             }
         }
