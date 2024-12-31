@@ -53,7 +53,7 @@
                         <div class="card-body">
                             <label for="" class="text-center form-label ">QR SCAN</label>
                             <div class="row ">
-                                <div class="col-6 offset-3 my-3 ">
+                                <div class="col-8 p-4 offset-2">
                                     {{ $qrCode }}
                                 </div>
                             </div>

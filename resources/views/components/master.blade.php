@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @vite(['resources/css/app.css','resources/css/pin_code.css', 'resources/js/app.js','resources/js/pin_code.js'])
+
+    @vite(['resources/css/app.css', 'resources/css/pin_code.css', 'resources/js/app.js', 'resources/js/pin_code.js'])
     @include('sweetalert::alert')
 
+    {{ $vite ?? null }}
     <link rel="stylesheet" href="">
 
     <!-- Font Awesome -->
@@ -176,18 +178,25 @@
 
 <script>
 
-    $(function($) {
-        let token = document.head.querySelector('meta[name="csrf_token"]');
-        if (token) {
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRF-TOKEN": token.content
-                }
-            });
-        } else {
-            // console.error('token not found!');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+
+    // $(function($) {
+    //     let token = document.head.querySelector('meta[name="csrf_token"]');
+    //     if (token) {
+    //         $.ajaxSetup({
+    //             headers: {
+    //                 "X-CSRF-TOKEN": token.content
+    //             }
+    //         });
+    //     } else {
+    //         // console.error('token not found!');
+    //     }
+    // });
 
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         var sidebar = document.getElementById('sidebar');
@@ -197,11 +206,9 @@
             sidebar.style.display = 'none';
         }
     });
-
 </script>
 
 {{-- js section for x --}}
 {{ $scripts ?? null }}
 
 </html>
-

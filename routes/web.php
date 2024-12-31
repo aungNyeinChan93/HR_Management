@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceScanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
@@ -42,6 +43,10 @@ Route::get("checkin-checkout/{id}/edit",[CheckInCheckOutController::class,'edit'
 Route::put("checkin-checkout/{id}/update",[CheckInCheckOutController::class,'update'])->name('checkin.update');
 Route::delete("checkin-checkout/{id}/delete",[CheckInCheckOutController::class,'destory'])->name('checkin.destory');
 
+
+// Attendance Scan
+Route::get("attendance_scan",[AttendanceScanController::class,'scan'])->name('attendance.scan')->middleware("auth");
+Route::post("attendance_scan",[AttendanceScanController::class,'store'])->name('attendance.store')->middleware("auth");
 
 //auth
 Route::middleware('auth')->group(function () {

@@ -76,10 +76,29 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="card p-3">
+                                <div class="card p-3 ">
                                     <a href="{{route('checkin.list')}}" class="text-danger"><i class="fa-solid fa-users me-4"></i> Check in & Check out Lists</a>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="card mt-3 px-4 py-3">
+                                            <a href="{{route('attendance.scan')}}" class="btn btn-sm w-100 btn-success">Attendance Scan</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card mt-3 px-4 py-3">
+                                            <a href="" class="btn btn-sm w-100 btn-info">Attendance Scan</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card mt-3 px-4 py-3">
+                                            <a href="" class="btn btn-sm w-100 btn-info">Attendance Scan</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\CompanySetting;
 use App\Models\CheckInCheckOut;
 use App\Jobs\CheckInCheckOutJob;
 
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CheckInCheckOutController extends Controller
@@ -19,7 +21,9 @@ class CheckInCheckOutController extends Controller
      */
     public function index()
     {
-        $qrCode = QrCode::size(300)->generate('QR_code, HR_MANAGEMENT');
+        $company_name = CompanySetting::first()->company_name.Carbon::now()->format("Y-m-d") ;
+        $hash_value = Hash::make($company_name);
+        $qrCode = QrCode::size(300)->generate($hash_value);
         return view('CheckInCheckOut.index', compact('qrCode'));
     }
 

@@ -56,7 +56,9 @@
                                         </div>
                                         <div class="col-6">
                                             <label for="date" class="form-label ms-3">Date</label>
-                                            <input type="date" name="date" class="form-control"
+                                            <input type="date" name="date" class="form-control" @if (!auth()->user()->can('SSS'))
+                                            disabled
+                                            @endif 
                                                 value="{{ $checkin_checkout->date }}">
                                         </div>
                                         @error('date')
